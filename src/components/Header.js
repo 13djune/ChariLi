@@ -1,23 +1,23 @@
-import ThemeToggle from './ThemeToggle';
+import BulbToggle from './BulbToggle';
+import Menu from './Menu';
+import { Link } from 'react-router-dom';
+
 
 export default function Header() {
   return (
-    <header className="w-full flex justify-between items-center px-6 py-4 border-b border-neutral-200 dark:border-neutral-800 bg-background text-text">
-      {/* 1. Logo */}
+    <header className="sticky top-0 left-0 w-full flex justify-between items-center px-6 py-4 z-50 text-text bg-none">
       <div className="text-xl font-bold tracking-tight">
-        <a href="#home">ChariLi</a>
+        <Link to="/">ChariLi</Link>
       </div>
 
-      {/* 2. Nav links */}
-      <nav className="hidden sm:flex gap-6 text-sm font-medium">
-        <a href="#about" className="hover:text-primary transition-colors">About</a>
-        <a href="#projects" className="hover:text-primary transition-colors">Projects</a>
-        <a href="#contact" className="hover:text-primary transition-colors">Contact</a>
+      <nav className="hidden sm:flex gap-6 text-sm font-medium items-center">
+      <Link to="/about" className="primarybutton z-50">Sobre mí</Link>
+        <Menu />
+        <Link to="/contact" className="primarybutton z-50">Contacto</Link>
       </nav>
 
-      {/* 3. Toggle */}
       <div>
-        <ThemeToggle />
+        <BulbToggle />
       </div>
     </header>
   );

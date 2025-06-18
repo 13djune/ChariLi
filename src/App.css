@@ -1,3 +1,86 @@
+:root {
+  --primary-color: #FFCC00;
+  --secondary-color: #dddbff;
+  --text-color: #040316;
+  --text-inverse-color: #fbfbfe;
+  --bg-color: #fbfbfe;
+  --accent-color: #130bf4;
+
+  --on: 0;
+  --bg: hsl(calc(200 - (var(--on) * 160)), calc((20 + (var(--on) * 50)) * 4%), calc((20 + (var(--on) * 60)) * 1%));
+  --cord: hsl(0, 0%, calc((60 - (var(--on) * 50)) * 1%));
+  --stroke: hsl(0, 0%, calc((60 - (var(--on) * 50)) * 1%));
+  --shine: hsla(0, 0%, 100%, calc(0.75 - (var(--on) * 0.5)));
+  --cap: hsl(0, 0%, calc((40 + (var(--on) * 30)) * 1%));
+  --filament: hsl(45, calc(var(--on) * 80%), calc((25 + (var(--on) * 75)) * 1%));
+}
+.dark {
+  --primary-color: #FED636;
+  --secondary-color: #020024;
+  --text-color: #eae9fc;
+  --text-inverse-color: #010104;
+  --bg-color: #010104;
+  --accent-color: #130bf4;
+}
+
+body {
+  background: var(--bg-color);
+  transition: background 0.3s ease;
+}
+
+/* Bombilla y cables */
+
+.toggle-scene {
+  height: 15dvh;
+  overflow: visible;
+  position: relative;
+}
+
+.toggle-scene__cord {
+  stroke: var(--cord);
+  cursor: move;
+}
+
+.toggle-scene__cord-end {
+  stroke: var(--cord);
+  fill: var(--cord);
+}
+
+.toggle-scene__dummy-cord {
+  stroke-width: 6;
+  stroke: var(--cord);
+}
+
+.bulb__cap {
+  fill: var(--cap);
+}
+
+.bulb__cap-shine {
+  fill: var(--shine);
+}
+
+.bulb__cap-outline {
+  stroke: var(--stroke);
+}
+
+.bulb__filament {
+  stroke: var(--filament);
+}
+
+.bulb__bulb {
+  stroke: var(--stroke);
+  fill: rgba(255, 204, 0, calc(0.1 + 0.4 * var(--on)));
+}
+
+.bulb__shine {
+  stroke: var(--shine);
+}
+
+.bulb__flash {
+  stroke: hsl(45, 80%, 80%);
+  display: none; /* puedes activar esto si quieres un efecto de brillo al encender */
+}
+
 .App {
   text-align: center;
 }

@@ -4,16 +4,28 @@
 
 :root {
   --primary-color: #FFCC00;
-  --text-color: #000000;
-  --text-inverse-color: #ffffff;
-  --bg-color: #ffffff;
+  --secondary-color: #dddbff;
+  --text-color: #040316;
+  --text-inverse-color: #fbfbfe;
+  --bg-color: #fbfbfe;
+  --accent-color: #130bf4;
+/* bombilla */
+  --on: 0;
+  --bg: hsl(calc(200 - (var(--on) * 160)), calc((20 + (var(--on) * 50)) * 1%), calc((20 + (var(--on) * 60)) * 1%));
+  --cord: hsl(0, 0%, calc((60 - (var(--on) * 50)) * 1%));
+  --stroke: hsl(0, 0%, calc((60 - (var(--on) * 50)) * 1%));
+  --shine: hsla(0, 0%, 100%, calc(0.75 - (var(--on) * 0.5)));
+  --cap: hsl(0, 0%, calc((40 + (var(--on) * 30)) * 1%));
+  --filament: hsl(45, calc(var(--on) * 80%), calc((25 + (var(--on) * 75)) * 1%));
 }
 
 .dark {
   --primary-color: #FED636;
-  --text-color: #ffffff;
-  --text-inverse-color: #000000;
-  --bg-color: #000000;
+  --secondary-color: #020024;
+  --text-color: #eae9fc;
+  --text-inverse-color: #010104;
+  --bg-color: #010104;
+  --accent-color: #130bf4;
 }
 
 
@@ -30,4 +42,85 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.primarybutton{
+  @apply
+  bg-background
+  hover:text-text 
+  hover:bg-primary 
+  p-3
+  rounded-full
+  transition-colors
+  dark:hover:text-text-inverse
+}
+/* styles.css o components.css */
+.animationbutton {
+  @apply
+    bg-background
+    hover:text-text 
+    hover:bg-primary 
+    p-3
+    rounded-full
+    transition-colors
+    dark:hover:text-text-inverse;
+}
+
+.card{
+  @apply
+  flex 
+  flex-col 
+  w-[30%] 
+  items-center
+  bg-background
+  p-4
+  rounded-lg
+  shadow-md
+  transition-shadow
+  hover:shadow-lg
+  hover:bg-primary
+  border
+  border-2
+  border-text
+  rounded-2xl
+  py-6
+  px-4
+  hover:text-text 
+    hover:bg-primary 
+  relative  
+  [transform-style:preserve-3d] 
+  transition-transform 
+  transition-colors
+  dark:hover:text-text-inverse
+  dark:text-text
+  duration-300 
+  hover:[transform:translate3d(-4px,-4px,0px)_scale3d(1.05,1.05,1)_rotateX(2deg)]
+  hover:[box-shadow:4px_4px_0px_0px_black]
+  dark:hover:[box-shadow:4px_4px_0px_0px_white]
+}
+
+.toggle-scene {
+  height: 50vmin;
+  position: absolute;
+  overflow: visible;
+}
+
+.toggle-scene__cord {
+  stroke: var(--cord);
+  cursor: move;
+  display: none;
+}
+
+.toggle-scene__cords path:nth-of-type(1) {
+  display: block;
+}
+
+.toggle-scene__cord-end {
+  stroke: var(--cord);
+  fill: var(--cord);
+}
+
+.toggle-scene__dummy-cord {
+  stroke-width: 6;
+  stroke: var(--cord);
 }
