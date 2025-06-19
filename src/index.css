@@ -66,38 +66,25 @@ code {
     dark:hover:text-text-inverse;
 }
 
-.card{
+.card {
   @apply
-  flex 
-  flex-col 
-  w-[30%] 
-  items-center
-  bg-background
-  p-4
-  rounded-lg
-  shadow-md
-  transition-shadow
-  hover:shadow-lg
+  
+  flex flex-col w-[30%] h-[45dvh]
+  justify-around items-center
+  bg-background p-4 px-10 py-6
+  rounded-2xl border-2 border-text
+  shadow-md transition-shadow hover:shadow-lg
   hover:bg-primary
-  border
-  border-2
-  border-text
-  rounded-2xl
-  py-6
-  px-4
-  hover:text-text 
-    hover:bg-primary 
-  relative  
-  [transform-style:preserve-3d] 
-  transition-transform 
-  transition-colors
-  dark:hover:text-text-inverse
+  text-black-500
   dark:text-text
-  duration-300 
+  dark:hover:text-text-inverse
+  transition-colors duration-300
+  [transform-style:preserve-3d]
   hover:[transform:translate3d(-4px,-4px,0px)_scale3d(1.05,1.05,1)_rotateX(2deg)]
   hover:[box-shadow:4px_4px_0px_0px_black]
-  dark:hover:[box-shadow:4px_4px_0px_0px_white]
+  dark:hover:[box-shadow:4px_4px_0px_0px_white];
 }
+
 
 .toggle-scene {
   height: 50vmin;
@@ -124,3 +111,22 @@ code {
   stroke-width: 6;
   stroke: var(--cord);
 }
+.pill {
+  @apply
+  inline-block
+  px-3 py-1
+  text-sm font-medium
+  rounded-full
+  border-2
+  border-primary
+  text-text
+  transition-colors
+  duration-300
+  group-hover:bg-primary
+  group-hover:text-text
+  group-hover:border-text
+  dark:group-hover:text-text-inverse
+  dark:group-hover:border-text-inverse
+  dark:text-text;
+}
+

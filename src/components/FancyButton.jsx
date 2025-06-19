@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 
-export default function FancyButton({ label = 'Get GSAP' }) {
-  const buttonRef = useRef(null);
+export default function FancyButton({ label = 'Get GSAP', icon = null }) {
+    const buttonRef = useRef(null);
   const flairRef = useRef(null);
   const xSet = useRef(null);
   const ySet = useRef(null);
@@ -80,16 +80,28 @@ export default function FancyButton({ label = 'Get GSAP' }) {
 
   return (
     <button
-      ref={buttonRef}
-      className="relative inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-black border-2 border-text  rounded-full overflow-hidden group"
-    >
-      <span
-        ref={flairRef}
-        className="absolute inset-0 pointer-events-none scale-0 origin-top-left will-change-transform"
-      >
-        <span className="absolute dark:text-text left-1/2 top-1/2 w-[170%] aspect-square bg-primary rounded-full transform -translate-x-1/2 -translate-y-1/2" />
-      </span>
-      <span className="relative z-10">{label}</span>
-    </button>
+  ref={buttonRef}
+  className="relative inline-flex items-center justify-center gap-2 px-6 py-3 text-base font-semibold border-2 border-text rounded-full overflow-hidden group"
+>
+  <span
+    ref={flairRef}
+    className="absolute inset-0 pointer-events-none scale-0 origin-top-left will-change-transform"
+  >
+    <span className="absolute left-1/2 top-1/2 w-[170%] aspect-square bg-primary rounded-full transform -translate-x-1/2 -translate-y-1/2" />
+  </span>
+
+  {/* icon con mezcla */}
+  {icon && (
+    <span className="relative z-10 text-white mix-blend-difference">
+      {icon}
+    </span>
+  )}
+
+  {/* label con mezcla */}
+  <span className="relative z-10 text-white mix-blend-difference">
+    {label}
+  </span>
+</button>
+
   );
 }

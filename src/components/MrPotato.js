@@ -16,92 +16,95 @@ export default function MrPotato({ image, container }) {
     const ball = ballRef.current;
     const boundsEl = container.current;
     if (!ball || !boundsEl) return;
-
-    radiusRef.current = ball.getBoundingClientRect().width / 2;
-    propsRef.current = gsap.getProperty(ball);
-    trackerRef.current = InertiaPlugin.track(ball, 'x,y')[0];
-
-    // Posicionar inicialmente en el centro del contenedor
-    const rect = boundsEl.getBoundingClientRect();
-    gsap.set(ball, {
-      xPercent: -50,
-      yPercent: -50,
-      x: rect.width / 2,
-      y: rect.height / 2,
-    });
-
-    const draggable = Draggable.create(ball, {
-      bounds: boundsEl,
-      inertia: true,
-      onPress() {
-        gsap.killTweensOf(ball);
-        this.update();
-      },
-      onDragEnd: () => animateBounce(),
-    })[0];
-
-    function animateBounce(x = '+=0', y = '+=0', vx = 'auto', vy = 'auto') {
-      gsap.fromTo(
-        ball,
-        { x, y },
-        {
-          inertia: { x: vx, y: vy },
-          onUpdate: checkBounds,
-          overwrite: true,
+  
+    const handleLoad = () => {
+      const rect = boundsEl.getBoundingClientRect();
+      radiusRef.current = ball.offsetWidth / 2;
+      propsRef.current = gsap.getProperty(ball);
+      trackerRef.current = InertiaPlugin.track(ball, 'x,y')[0];
+  
+      gsap.set(ball, {
+        xPercent: -50,
+        yPercent: -50,
+        x: rect.width / 2,
+        y: rect.height / 2,
+      });
+  
+      const draggable = Draggable.create(ball, {
+        bounds: boundsEl,
+        inertia: true,
+        onPress() {
+          gsap.killTweensOf(ball);
+          this.update();
+        },
+        onDragEnd: () => animateBounce(),
+      })[0];
+  
+      function animateBounce(x = '+=0', y = '+=0', vx = 'auto', vy = 'auto') {
+        gsap.fromTo(
+          ball,
+          { x, y },
+          {
+            inertia: { x: vx, y: vy },
+            onUpdate: checkBounds,
+            overwrite: true,
+          }
+        );
+      }
+  
+      function checkBounds() {
+        const get = propsRef.current;
+        const tracker = trackerRef.current;
+        const bounds = container.current.getBoundingClientRect();
+        const ballRect = ball.getBoundingClientRect();
+  
+        let x = get('x');
+        let y = get('y');
+        let vx = tracker.get('x');
+        let vy = tracker.get('y');
+        let newX = x;
+        let newY = y;
+        let hit = false;
+  
+        if (ballRect.right > bounds.right) {
+          newX -= ballRect.right - bounds.right;
+          vx *= friction;
+          hit = true;
         }
-      );
-    }
-
-    function checkBounds() {
-      const get = propsRef.current;
-      const tracker = trackerRef.current;
-      const ball = ballRef.current;
-      const bounds = container.current.getBoundingClientRect();
-      const ballRect = ball.getBoundingClientRect();
-
-      let x = get('x');
-      let y = get('y');
-      let vx = tracker.get('x');
-      let vy = tracker.get('y');
-      let newX = x;
-      let newY = y;
-      let hit = false;
-
-      if (ballRect.right > bounds.right) {
-        newX -= ballRect.right - bounds.right;
-        vx *= friction;
-        hit = true;
+        if (ballRect.left < bounds.left) {
+          newX += bounds.left - ballRect.left;
+          vx *= friction;
+          hit = true;
+        }
+        if (ballRect.bottom > bounds.bottom) {
+          newY -= ballRect.bottom - bounds.bottom;
+          vy *= friction;
+          hit = true;
+        }
+        if (ballRect.top < bounds.top) {
+          newY += bounds.top - ballRect.top;
+          vy *= friction;
+          hit = true;
+        }
+  
+        if (hit) {
+          animateBounce(newX, newY, vx, vy);
+        }
       }
-      if (ballRect.left < bounds.left) {
-        newX += bounds.left - ballRect.left;
-        vx *= friction;
-        hit = true;
-      }
-      if (ballRect.bottom > bounds.bottom) {
-        newY -= ballRect.bottom - bounds.bottom;
-        vy *= friction;
-        hit = true;
-      }
-      if (ballRect.top < bounds.top) {
-        newY += bounds.top - ballRect.top;
-        vy *= friction;
-        hit = true;
-      }
-
-      if (hit) {
-        animateBounce(newX, newY, vx, vy);
-      }
-    }
-
-    return () => draggable.kill();
+  
+      return () => draggable.kill();
+    };
+  
+    // Espera al frame siguiente para asegurar que layout esté listo
+    requestAnimationFrame(handleLoad);
   }, [container]);
-
+  
   return (
     <img
       ref={ballRef}
       src={image}
       alt=""
-      className="w-[125px] h-[125px] absolute top-0 left-0 cursor-move z-10"
+      className="w-[125px] h-[125px] absolute top-0 left-0 cursor-move z-5"
       style={{ pointerEvents: 'auto' }}
     />
   );

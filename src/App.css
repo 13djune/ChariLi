@@ -119,3 +119,26 @@ body {
     transform: rotate(360deg);
   }
 }
+
+
+.js-work-link {
+
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  @apply
+  text-text
+}
+
+.underline {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: calc(1px + 0.1vw);
+  pointer-events: none;
+  @apply
+  bg-text
+}
