@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { gsap } from 'gsap';
 import { InertiaPlugin } from 'gsap/InertiaPlugin';
@@ -117,17 +117,22 @@ const Modal = ({ img, onClose }) => {
 
 export default function Gallery() {
   const [selected, setSelected] = useState(null);
-  let oldX = 0, oldY = 0, deltaX = 0, deltaY = 0;
+  const oldX = useRef(0);
+  const oldY = useRef(0);
+  const deltaX = useRef(0);
+  const deltaY = useRef(0);
+  
 
   useEffect(() => {
     const root = document.querySelector('.mwg_effect000');
 
     const handleMouseMove = (e) => {
-      deltaX = e.clientX - oldX;
-      deltaY = e.clientY - oldY;
-      oldX = e.clientX;
-      oldY = e.clientY;
-    };
+        deltaX.current = e.clientX - oldX.current;
+        deltaY.current = e.clientY - oldY.current;
+        oldX.current = e.clientX;
+        oldY.current = e.clientY;
+      };
+      
 
     const handleHover = (el) => {
       const img = el.querySelector('img');
@@ -135,9 +140,10 @@ export default function Gallery() {
       tl.timeScale(1.2);
       tl.to(img, {
         inertia: {
-          x: { velocity: deltaX * 30, end: 0 },
-          y: { velocity: deltaY * 30, end: 0 }
-        }
+            x: { velocity: deltaX.current * 30, end: 0 },
+            y: { velocity: deltaY.current * 30, end: 0 }
+          }
+          
       });
       tl.fromTo(img, { rotate: 0 }, {
         duration: 0.4,

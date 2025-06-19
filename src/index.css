@@ -226,6 +226,7 @@ p{
 }
 .swiper-slide:hover {
   transform: scale(1.03);
+
 }.mwg_effect000 .medias {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
