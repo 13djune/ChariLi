@@ -221,3 +221,9 @@ p{
   font-bodySemiBold
 }
 
+.swiper-slide {
+  transition: transform 0.3s ease;
+}
+.swiper-slide:hover {
+  transform: scale(1.03);
+}

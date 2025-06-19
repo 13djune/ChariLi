@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 
-export default function FancyButton({ label = 'Get GSAP', icon = null }) {
+export default function FancyButton({ label = 'Get GSAP', icon, onClick }) {
     const buttonRef = useRef(null);
   const flairRef = useRef(null);
   const xSet = useRef(null);
@@ -80,6 +80,7 @@ export default function FancyButton({ label = 'Get GSAP', icon = null }) {
 
   return (
     <button
+    onClick={onClick}
   ref={buttonRef}
   className="relative inline-flex items-center justify-center gap-2 px-6 py-3 text-base font-semibold border-2 border-text rounded-full overflow-hidden group"
 >

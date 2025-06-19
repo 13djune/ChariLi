@@ -10,7 +10,7 @@ import Home from './pages/Home';
 export default function App() {
   return (
     <Router>
-      <main className="p-6 bg-background">
+      <main className=" bg-background">
       <Header />
         <Routes>
           <Route path="/" element={<Home />} />

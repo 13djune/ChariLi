@@ -3,22 +3,23 @@ import { Link } from 'react-router-dom';
 import Gazpachuelo from '../assets/img/Gazpachuelo_0.webp';
 import DURA from '../assets/img/DURA.webp';
 const projects = [
-  {
-    name: 'Gazpachuelo',
-    link: '#Gazpachuelo',
-    image: Gazpachuelo,
-  },
-  {
-    name: 'DURA',
-    link: '#DURA',
-    image: DURA,
-  },
-  {
-    name: 'Proyecto 3',
-    link: '#proyecto3',
-    image: '/images/proyecto3.png',
-  },
-];
+    {
+      name: 'Gazpachuelo',
+      link: '/projects#gazpachuelo',
+      image: Gazpachuelo,
+    },
+    {
+      name: 'DURA',
+      link: '/projects#dura',
+      image: DURA,
+    },
+    {
+      name: 'Proyecto 3',
+      link: '/projects#proyecto3',
+      image: '/images/proyecto3.png',
+    },
+  ];
+  
 
 export default function Menu() {
   const [hoveredProject, setHoveredProject] = useState(null);
@@ -45,7 +46,10 @@ export default function Menu() {
       onMouseLeave={handleMouseLeave}
     >
       {/* Botón */}
-      <button className="font-heading primarybutton">Proyectos</button>
+      <Link to="/projects" className="font-heading primarybutton">
+  Proyectos
+</Link>
+
 
       {/* Dropdown persistente */}
       {open && (
@@ -54,13 +58,14 @@ export default function Menu() {
           <ul className="flex flex-col p-2 min-w-[160px] ">
             {projects.map((project, index) => (
               <li key={index}>
-                <Link
-                  href={project.link}
-                  onMouseEnter={() => setHoveredProject(project)}
-                  className="block primarybutton justify-self-center m-1 border border-primary font-heading"
-                >
-                  {project.name}
-                </Link>
+               <Link
+  to={project.link} // 👈 aquí
+  onMouseEnter={() => setHoveredProject(project)}
+  className="block primarybutton justify-self-center m-1 border border-primary font-heading"
+>
+  {project.name}
+</Link>
+
               </li>
             ))}
           </ul>
