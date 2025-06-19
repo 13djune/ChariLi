@@ -97,7 +97,7 @@ export default function MrPotato({ image, container }) {
   
     // Espera al frame siguiente para asegurar que layout esté listo
     requestAnimationFrame(handleLoad);
-  }, [container]);
+  }, [container, friction]);
   
   return (
     <img

@@ -18,22 +18,23 @@ export default function SkillCircle({
   const circumference = 2 * Math.PI * radius;
 
   useEffect(() => {
+    const container = containerRef.current;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !triggered) {
-          setTriggered(true); // evita repetir la animación
+          setTriggered(true);
         }
       },
       { threshold: 0.5 }
     );
 
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
+    if (container) {
+      observer.observe(container);
     }
 
     return () => {
-      if (containerRef.current) {
-        observer.unobserve(containerRef.current);
+      if (container) {
+        observer.unobserve(container);
       }
     };
   }, [triggered]);

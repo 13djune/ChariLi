@@ -3,7 +3,6 @@ import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import Modal from 'react-modal';
 import { useState } from 'react';
-import Gazpachuelo_0 from '../assets/img/Gazpachuelo_0.webp';
 import FancyButton from '../components/FancyButton';
 import { Icon } from '@iconify/react';
 
