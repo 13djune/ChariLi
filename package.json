@@ -1,7 +1,7 @@
 {
   "name": "charili",
   "version": "0.1.0",
-"homepage": "https://13djune.github.io/ChariLi",
+
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
