@@ -56,7 +56,7 @@ export default function ProjectSlider({ project }) {
       const inertia = () => {
         if (Math.abs(velocity) > 0.1) {
           el.scrollLeft -= velocity;
-          velocity *= 1;
+          velocity *= 0.95;
           animationId = requestAnimationFrame(inertia);
         }
       };
