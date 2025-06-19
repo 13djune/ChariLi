@@ -49,7 +49,7 @@ export default function WorkLink({ children, href = '#' }) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="relative inline-block font-bold text-[16px]"
+      className="font-heading relative inline-block font-bold text-[16px]"
     >
       <span className="relative z-10">{children}</span>
       <span

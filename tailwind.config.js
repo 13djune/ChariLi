@@ -10,6 +10,12 @@ module.exports = {
   darkMode: 'class',
   theme: {
     extend: {
+      fontFamily: {
+        heading: ['"HaasGroteskBold"', 'sans-serif'], // usa Futura si está disponible
+        body: ['"Nunito"', 'sans-serif'],
+        bodySemiBold: ['"NunitoSemiBold"', 'sans-serif'],
+        bodyBold: ['"NunitoBold"', 'sans-serif'],
+      },
       colors: {
         yellow: {
           50: '#FFFAE5',

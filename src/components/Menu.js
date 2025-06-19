@@ -45,7 +45,7 @@ export default function Menu() {
       onMouseLeave={handleMouseLeave}
     >
       {/* Botón */}
-      <button className="primarybutton">Proyectos</button>
+      <button className="font-heading primarybutton">Proyectos</button>
 
       {/* Dropdown persistente */}
       {open && (
@@ -57,7 +57,7 @@ export default function Menu() {
                 <Link
                   href={project.link}
                   onMouseEnter={() => setHoveredProject(project)}
-                  className="block primarybutton justify-self-center m-1 border border-primary"
+                  className="block primarybutton justify-self-center m-1 border border-primary font-heading"
                 >
                   {project.name}
                 </Link>

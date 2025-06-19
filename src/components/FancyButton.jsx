@@ -98,7 +98,7 @@ export default function FancyButton({ label = 'Get GSAP', icon = null }) {
   )}
 
   {/* label con mezcla */}
-  <span className="relative z-10 text-white mix-blend-difference">
+  <span className="relative z-10 text-white mix-blend-difference font-bodyBold">
     {label}
   </span>
 </button>

@@ -4,6 +4,7 @@ import MrPotato from '../components/MrPotato';
 import xari from '../assets/img/xari.webp'; 
 import React, { useRef } from 'react';
 import WorkLink from '../components/WorkLink';
+import SkillCircle from '../components/SkillCircle';
 
 export default function About() {
     const containerRef = useRef(null);
@@ -28,6 +29,7 @@ export default function About() {
           <p className="text-text">
         nací en Málaga y crecí en Torre del Mar, un pueblo en la costa de la Axarquía.
           </p>
+          <br></br>
           <p className="text-text">
           Nativa en redes sociales, desde muy joven he estado en contacto con el mundo del internet, llegando a gestionar junto a mi equipo cuentas y comunidades de más de 70.000 seguidores.
           </p>
@@ -35,7 +37,7 @@ export default function About() {
             </div>
         </section>
         <section className="max-w-5xl mx-auto my-[9rem]">
-            <div className='flex flex-row'>
+            <div className='flex flex-row justify-between'>
             <div className="card group">
             <div>
                     <Icon
@@ -45,12 +47,12 @@ export default function About() {
                         className="p-2 rounded-full bg-primary text-black-500"
                         />
                     </div>
-                    <WorkLink className="cursor-pointer" key="gaz" href="https://www.youtube.com/watch?v=KA-7mkDLY28">"Gazpachuelo"</WorkLink>
+                    <WorkLink className="cursor-pointer   font-heading" key="gaz" href="https://www.youtube.com/watch?v=KA-7mkDLY28">"Gazpachuelo"</WorkLink>
                     <p className='text-xs'>
                      Categoría Mejor Corto en el Festival ADN 2023. Presentado y participando en el Festival Internacional de Cine en Guadalajara (México).
                     </p>
                     <br></br>
-                    <WorkLink key="out"  href="...">"OutS1d3"</WorkLink>
+                    <WorkLink className="cursor-pointer   font-heading" key="out"  href="...">"OutS1d3"</WorkLink>
                     <p className='text-xs'>
                         Coordinación en departamentos de dirección y producción, ganador a mejor dirección de arte en el Festival ADN 2025.
                         </p>
@@ -86,7 +88,17 @@ export default function About() {
 
             </div>
         </section>
-        <section className="max-w-5xl mx-auto">
+        <section className="max-w-5xl mx-auto flex flex-col items-center">
+            <h1 className='text-xl'>Mis skills:</h1>
+        <div className="grid grid-cols-3 gap-6 m-10">
+  <SkillCircle  label="Dirección" icon="material-symbols:movie-outline-rounded" percent={80} />
+  <SkillCircle  label="Fotografía analógica/digital" icon="material-symbols:camera-roll-outline-rounded" percent={90} />
+  <SkillCircle  label="Creatividad" icon="material-symbols:lightbulb-2-outline-rounded" percent={100} />
+  <SkillCircle  label="Edición foto/vídeo" icon="material-symbols:edit-outline-rounded" percent={70} />
+  <SkillCircle  label="Social media" icon="material-symbols:animated-images-outline-rounded" percent={95} />
+  <SkillCircle  label="Publicidad" icon="material-symbols:connect-without-contact-outline-rounded" percent={74} />
+</div>
+
         <FancyButton
   label="Descargar CV"
   icon={

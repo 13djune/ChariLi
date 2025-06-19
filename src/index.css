@@ -1,7 +1,90 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@font-face {
+  font-family: 'HaasGroteskBlack';
+  src: url('./assets/fonts/NeueHaasDisplay-Black.woff2') format('woff2');
+  font-weight: black;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'HaasGroteskBlackItalic';
+  src: url('./assets/fonts/NeueHaasDisplay-BlackItalic.woff2') format('woff2');
+  font-weight: black;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'HaasGroteskBold';
+  src: url('./assets/fonts/NeueHaasDisplay-Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'HaasGroteskBoldItalic';
+  src: url('./assets/fonts/NeueHaasDisplay-BoldItalic.woff2') format('woff2');
+  font-weight: bold;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'HaasGroteskLightItalic';
+  src: url('./assets/fonts/NeueHaasDisplay-LightItalic.woff2') format('woff2');
+  font-weight: light;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'HaasGroteskMedium';
+  src: url('./assets/fonts/NeueHaasDisplay-Mediu.woff2') format('woff2');
+  font-weight: medium;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'HaasGroteskMediumItalic';
+  src: url('./assets/fonts/NeueHaasDisplay-MediumItalic.woff2') format('woff2');
+  font-weight: medium;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'HaasGroteskBook';
+  src: url('./assets/fonts/NeueHaasDisplay-Roman.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'HaasGroteskBookItalic';
+  src: url('./assets/fonts/NeueHaasDisplay-RomanItalic.woff2') format('woff2');
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'HaasGroteskThin';
+  src: url('./assets/fonts/NeueHaasDisplay-Thin.woff2') format('woff2');
+  font-weight: thin;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Nunito';
+  src: url('./assets/fonts/Nunito-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'NunitoItalic';
+  src: url('./assets/fonts/Nunito-Italic.woff2') format('woff2');
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'NunitoSemiBold';
+  src: url('./assets/fonts/Nunito-SemiBold.woff2') format('woff2');
+  font-weight: semibold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'NunitoBold';
+  src: url('./assets/fonts/Nunito-Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+}
 :root {
   --primary-color: #FFCC00;
   --secondary-color: #dddbff;
@@ -43,7 +126,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
+h1,h2,h3{
+  @apply
+  font-heading
+}
+p{
+ @apply
+ font-body
+}
 .primarybutton{
   @apply
   bg-background
@@ -127,6 +217,7 @@ code {
   group-hover:border-text
   dark:group-hover:text-text-inverse
   dark:group-hover:border-text-inverse
-  dark:text-text;
+  dark:text-text
+  font-bodySemiBold
 }
 
