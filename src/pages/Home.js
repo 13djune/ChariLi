@@ -1,6 +1,10 @@
+import Gallery from "../components/Gallery";
+
 export default function Home() {
     return (
-      <div>Bienvenido a ChariLi</div>
+      <div>
+        <Gallery />
+      </div>
     );
   }
   

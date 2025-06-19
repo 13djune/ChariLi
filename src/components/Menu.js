@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import Gazpachuelo from '../assets/img/Gazpachuelo_0.webp';
+import Gazpachuelo from '../assets/img/GAZPACHUELO/CARTEL_GANADOR.jpg';
 import DURA from '../assets/img/DURA.webp';
 const projects = [
     {

@@ -35,32 +35,35 @@ export default function ProjectSlider({ project }) {
 
         {/* Slider */}
         <Swiper
-          modules={[Autoplay]}
-          slidesPerView={3}
-          spaceBetween={20}
+  modules={[Autoplay]}
+  slidesPerView="auto"
+  spaceBetween={32}
+  loop
+  autoplay={{ delay: 2500 }}
+>
+  {project.media.map((media, i) => (
+    <SwiperSlide key={i} className="!w-auto flex items-end justify-center">
+      {media.type === 'image' ? (
+        <img
+          src={media.src}
+          alt={`${project.title} ${i + 1}`}
+          className="h-[480px] w-auto rounded-xl"
+        />
+      ) : (
+        <video
+          src={media.src}
+          muted
+          autoPlay
           loop
-          autoplay={{ delay: 2500 }}
-        >
-          {project.media.map((media, i) => (
-            <SwiperSlide key={i}>
-              {media.type === 'image' ? (
-                <img
-                  src={media.src}
-                  alt={`${project.title} ${i + 1}`}
-                  className="rounded-xl object-cover w-full h-auto"
-                />
-              ) : (
-                <video
-                  src={media.src}
-                  muted
-                  autoPlay
-                  loop
-                  className="rounded-xl object-cover w-full h-auto"
-                />
-              )}
-            </SwiperSlide>
-          ))}
-        </Swiper>
+          className="h-[480px] w-auto rounded-xl"
+        />
+      )}
+    </SwiperSlide>
+  ))}
+</Swiper>
+
+
+
       </div>
 
       {/* Modal */}
