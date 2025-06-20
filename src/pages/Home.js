@@ -1,10 +1,13 @@
 import Gallery from "../components/Gallery";
-
+import Hero from "../components/Hero";
 export default function Home() {
     return (
-      <div>
-        <Gallery />
-      </div>
+        <>
+        <Hero />
+        <section className="relative z-0">
+          <Gallery />
+        </section>
+      </>
     );
   }
   
