@@ -25,13 +25,15 @@ import Funked_2 from '../assets/img/FUNKED_UP/907704.jpg';
 import Randall_0 from '../assets/img/RANDALL_BOGGS/806231.jpg';
 import Randall_1 from '../assets/img/RANDALL_BOGGS/806232.jpg';
 import Randall_2 from '../assets/img/RANDALL_BOGGS/806234.jpg';
+import Locurote_0 from '../assets/img/LOCUROTE/Locurote_0.webp';
+import Locurote_1 from '../assets/img/LOCUROTE/Locurote_2.png';
 
 const projects = [
   {
     id: 1,
     title: 'Gazpachuelo',
     year: 2023,
-    description: 'Premio a Mejor Corto en Festival ADN y proyectado en el Festival Internacional de Cine en Guadalajara (FICG, MEXICO)',
+    description: 'Una joven malagueña intenta cocinar su primer gazpachuelo en su piso de estudiantes, pero su poca experiencia y su terquedad hacen que ni siquiera consiga montar la mayonesa. Premio a Mejor Corto en Festival ADN y proyectado en el Festival Internacional de Cine en Guadalajara (FICG, MEXICO).',
     media: [
       { type: 'image', src: Gazpachuelo_0 },
       { type: 'image', src: Gazpachuelo_1 },
@@ -39,13 +41,14 @@ const projects = [
       { type: 'image', src: Gazpachuelo_3 },
       { type: 'image', src: Gazpachuelo_4 },
       { type: 'image', src: Gazpachuelo_5 },
+      // { type: 'video', src: 'https://www.youtube.com/watch?v=KA-7mkDLY28' },
     ],
     disciplines: ['Directora', 'Dirección Creativa', 'Producción audiovisual'],
     link: 'https://www.youtube.com/watch?v=KA-7mkDLY28',
   },
   {
     id: 2,
-    title: 'DURA - RAKKY RIPPER',
+    title: 'DURA',
     year: 2023,
     description: 'Grabando en un coche para Rakky Ripper en el videoclip "DURA"',
     media: [
@@ -58,18 +61,20 @@ const projects = [
     id: 3,
     title: 'Locurote',
     year: 2023,
-    description: 'Videoclip de Daniel Arias',
+    description: 'Videoclip de Daniel Arias. ',
     media: [
-      { type: 'image', src: Gazpachuelo_0 },
+      { type: 'image', src: Locurote_0 },
+      { type: 'image', src: Locurote_1 },
+      // { type: 'video', src: 'https://www.youtube.com/watch?v=LLGJI6fENJA' },
     ],
-    disciplines: ['Operación de cámara', 'Grabación de sonido'],
+    disciplines: ['Operación de cámara', 'Grabación de sonido', 'Fotografía fija'],
     link: 'https://www.youtube.com/watch?v=LLGJI6fENJA',
   },
   {
     id: 4,
     title: 'Química - Averzzo',
     year: 2023,
-    description: 'Foto fija promocional para videoclip "Química" de Averzzo. Portada de la revista "DeKé Magazine".',
+    description: 'Foto fija promocional para videoclip "Química" de Averzzo en formato 35mm con una película caducada. Portada de la revista "DeKé Magazine".',
     media: [
       { type: 'image', src: Quimica_0 },
       { type: 'image', src: Quimica_1 },
@@ -111,14 +116,14 @@ const projects = [
     id: 7,
     title: 'LA CORRIENTE (Making Of)',
     year: 2022,
-    description: 'Grabación y edición para el BTS del videoclip de Marta Sango y Rakky Ripper. Fotos BTS',
+    description: 'Grabación y edición para el BTS del videoclip de Marta Sango y Rakky Ripper en Mini DV. Fotos BTS',
     media: [
       { type: 'image', src: Corriente_0 },
       { type: 'image', src: Corriente_1 },
       { type: 'image', src: Corriente_2 },
       { type: 'image', src: Corriente_3 },
     ],
-    disciplines: ['Edición de vídeo', 'Grabación de vídeo', 'BTS'],
+    disciplines: ['Edición de vídeo', 'Grabación de vídeo', 'BTS', 'Postproducción'],
     link: 'https://www.youtube.com/watch?v=rbM2dwoCa6k',
   },
   {
@@ -136,7 +141,7 @@ const projects = [
     id: 9,
     title: 'Funked Up',
     year: 2022,
-    description: 'Videoclip para Sandra Iris',
+    description: 'Videoclip para Sandra Iris. Fotografía fija del set en 35mm en tres localizaciones/sets.',
     media: [
       { type: 'image', src: Funked_0 },
       { type: 'image', src: Funked_1 },

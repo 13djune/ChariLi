@@ -15,6 +15,9 @@ module.exports = {
         body: ['"Nunito"', 'sans-serif'],
         bodySemiBold: ['"NunitoSemiBold"', 'sans-serif'],
         bodyBold: ['"NunitoBold"', 'sans-serif'],
+        AncizarItalic: ['"AncizarItalic"', 'sans-serif'],
+        Graffiti: ['"Graffiti"', 'sans-serif'],
+        Teletext: ['"Teletext"', 'sans-serif'],
       },
       colors: {
         yellow: {

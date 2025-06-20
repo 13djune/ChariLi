@@ -47,7 +47,7 @@ import Gallery_40 from '../assets/img/GALLERY/Negative0-25-21A(1).jpg';
 import Gallery_41 from '../assets/img/GALLERY/Negative0-32-32(1)(1).jpg';
 import Gallery_42 from '../assets/img/GALLERY/Negative0-32-32(1).jpg';
 import Gallery_43 from '../assets/img/GALLERY/Negative0-40-40(1).jpg';
-
+import Gallery_44 from '../assets/img/GALLERY/944905.jpg';
 
 
 gsap.registerPlugin(InertiaPlugin);
@@ -96,7 +96,8 @@ const images = [
     { src: Gallery_40, title:" Imagen 40",description:"" },
     { src: Gallery_41, title:" Imagen 41",description:"" },
     { src: Gallery_42, title:" Imagen 42",description:"" },
-    { src: Gallery_43, title:" Imagen 43",description:"" }
+    { src: Gallery_43, title:" Imagen 43",description:"" },
+    { src: Gallery_44, title:" Imagen 43",description:"" }
 
     // ...
   ];

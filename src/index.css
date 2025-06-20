@@ -85,6 +85,26 @@
   font-weight: bold;
   font-style: normal;
 }
+@font-face {
+  font-family: 'AncizarItalic';
+  src: url('./assets/fonts/AncizarSans-ThinItalic.woff2') format('woff2');
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Graffiti';
+  src: url('./assets/fonts/GraffitiHappyMoodRegular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Teletext';
+  src: url('./assets/fonts/EuropeanTeletextNuevo.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 :root {
   --primary-color: #FFCC00;
   --secondary-color: #dddbff;
