@@ -54,7 +54,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="relative w-full overflow-hidden bg-black h-[60dvh] flex flex-col items-center content-center">
+      <div className="relative w-full overflow-hidden bg-black h-[60dvh] flex flex-col items-center justify-center">
   <div className="absolute inset-0">
     <Lava />
   </div>

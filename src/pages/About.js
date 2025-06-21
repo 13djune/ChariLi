@@ -92,7 +92,7 @@ export default function About() {
                 <div className="card group">
             <div>
                     <Icon
-                        icon="material-symbols:book-2-outline-rounded"
+                        icon="material-symbols:menu-book-outline-rounded"
                         width="50"
                         height="50"
                         className="p-2 rounded-full bg-primary text-black-500"
