@@ -8,6 +8,7 @@ import About from './pages/About';
 import Projects from './pages/Projects';
 import Contact from './pages/Contact';
 import Home from './pages/Home';
+import Footer from './components/Footer';
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -35,6 +36,7 @@ export default function App() {
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </main>
+      <Footer/>
     </Router>
   );
 }

@@ -19,6 +19,11 @@ import Quimica_6 from '../assets/img/QUIMICA_AVERZZO/000026.jpg';
 import Quimica_7 from '../assets/img/QUIMICA_AVERZZO/000030.jpg';
 import  Quimica_8 from '../assets/img/QUIMICA_AVERZZO/000035.jpg';
 import  Quimica_9 from '../assets/img/QUIMICA_AVERZZO/000036.jpg';
+import DeKe_0 from '../assets/img/QUIMICA_AVERZZO/000027.jpg';
+import DeKe_1 from '../assets/img/QUIMICA_AVERZZO/Escaner_20240105(2).png';
+import DeKe_2 from '../assets/img/QUIMICA_AVERZZO/Escaner_20240105.png';
+import DeKe_3 from '../assets/img/QUIMICA_AVERZZO/Escaner_20240105(3).png';
+import DeKe_4 from '../assets/img/QUIMICA_AVERZZO/Escaner_20240105(5).png';
 import Funked_0 from '../assets/img/FUNKED_UP/863118.jpg';
 import Funked_1 from '../assets/img/FUNKED_UP/907702.jpg';
 import Funked_2 from '../assets/img/FUNKED_UP/907704.jpg';
@@ -33,7 +38,10 @@ const projects = [
     id: 1,
     title: 'Gazpachuelo',
     year: 2023,
-    description: 'Una joven malagueña intenta cocinar su primer gazpachuelo en su piso de estudiantes, pero su poca experiencia y su terquedad hacen que ni siquiera consiga montar la mayonesa. Premio a Mejor Corto en Festival ADN y proyectado en el Festival Internacional de Cine en Guadalajara (FICG, MEXICO).',
+    description: [
+      'Una joven malagueña intenta cocinar su primer gazpachuelo en su piso de estudiantes, pero su poca experiencia y su terquedad hacen que ni siquiera consiga montar la mayonesa.',
+      'Premio a Mejor Corto en Festival ADN 2023 y proyectado en el Festival Internacional de Cine en Guadalajara (FICG, MEXICO).'
+    ],
     media: [
       { type: 'image', src: Gazpachuelo_0 },
       { type: 'image', src: Gazpachuelo_1 },
@@ -72,9 +80,10 @@ const projects = [
   },
   {
     id: 4,
-    title: 'Química - Averzzo',
+    title: 'Química-Averzzo + DeKé Magazine',
     year: 2023,
-    description: 'Foto fija promocional para videoclip "Química" de Averzzo en formato 35mm con una película caducada. Portada de la revista "DeKé Magazine".',
+    description: ['Foto fija promocional para videoclip "Química" de Averzzo en formato 35mm con una película caducada.',
+    'Portada de la revista "DeKé Magazine".'],
     media: [
       { type: 'image', src: Quimica_0 },
       { type: 'image', src: Quimica_1 },
@@ -86,6 +95,11 @@ const projects = [
       { type: 'image', src: Quimica_7 },
       { type: 'image', src: Quimica_8 },
       { type: 'image', src: Quimica_9 },
+      { type: 'image', src: DeKe_1 },
+      { type: 'image', src: DeKe_2 },
+      { type: 'image', src: DeKe_0 },
+      { type: 'image', src: DeKe_3 },
+      { type: 'image', src: DeKe_4 },
     ],
     disciplines: ['Fotografía fija', 'Dirección Creativa'],
     link: 'https://www.youtube.com/watch?v=Wr7C414tpU8',

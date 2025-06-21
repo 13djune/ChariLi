@@ -13,6 +13,7 @@ module.exports = {
       fontFamily: {
         heading: ['"HaasGroteskBold"', 'sans-serif'], // usa Futura si está disponible
         body: ['"Nunito"', 'sans-serif'],
+        bodyItalic: ['"NunitoItalic"', 'sans-serif'],
         bodySemiBold: ['"NunitoSemiBold"', 'sans-serif'],
         bodyBold: ['"NunitoBold"', 'sans-serif'],
         AncizarItalic: ['"AncizarItalic"', 'sans-serif'],
@@ -69,6 +70,7 @@ module.exports = {
           DEFAULT: 'var(--text-color)',
           inverse: 'var(--text-inverse-color)',
         },
+        accent: 'var(--accent-color)',
       },
     },
   },

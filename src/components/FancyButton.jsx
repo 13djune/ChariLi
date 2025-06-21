@@ -82,7 +82,7 @@ export default function FancyButton({ label = 'Get GSAP', icon, onClick }) {
     <button
     onClick={onClick}
   ref={buttonRef}
-  className="relative inline-flex items-center justify-center gap-2 px-6 py-3 text-base font-semibold border-2 border-text rounded-full overflow-hidden group"
+  className="relative inline-flex items-center justify-center gap-2 px-6 py-3 text-base font-semibold border-2 border-text hover:border-accent rounded-full overflow-hidden group"
 >
   <span
     ref={flairRef}

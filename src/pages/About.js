@@ -31,7 +31,14 @@ export default function About() {
           </p>
           <br></br>
           <p className="text-text">
+          Durante los años en los que estudié Comunicación Audiovisual en Madrid, no he parado de desarrollarme profesionalmente en diferentes campos.          </p>
+          <br></br>
+          <p className="text-text">
           Nativa en redes sociales, desde muy joven he estado en contacto con el mundo del internet, llegando a gestionar junto a mi equipo cuentas y comunidades de más de 70.000 seguidores.
+          </p>
+          <br></br>
+          <p className="text-text">
+          Estoy dispuesta a trabajar y desempeñar distintos cargos para ganar experiencia en los mundos que me apasionan. Nunca se termina de aprender sobre cine, televisión, radio, espectáculos…
           </p>
             </div>
             </div>
@@ -48,18 +55,15 @@ export default function About() {
                         />
                     </div>
                     <WorkLink className="cursor-pointer   font-heading" key="gaz" href="https://www.youtube.com/watch?v=KA-7mkDLY28">"Gazpachuelo"</WorkLink>
-                    <p className='text-xs'>
+                    <p className='text-sm text-center'>
                      Categoría Mejor Corto en el Festival ADN 2023. Presentado y participando en el Festival Internacional de Cine en Guadalajara (México).
                     </p>
                     <br></br>
-                    <WorkLink className="cursor-pointer   font-heading" key="out"  href="...">"OutS1d3"</WorkLink>
-                    <p className='text-xs'>
+                    <WorkLink className="cursor-pointer font-heading" key="out"  href="...">"OutS1d3"</WorkLink>
+                    <p className='text-sm text-center'>
                         Coordinación en departamentos de dirección y producción, ganador a mejor dirección de arte en el Festival ADN 2025.
                         </p>
 
-                </div>
-                <div>
-       
                 </div>
                 <div className="card group text-text hover:text-text-inverse dark:text-text dark:hover:text-text-inverse">
                 <div>
@@ -84,6 +88,27 @@ export default function About() {
                      
                     <h2 className="cursor-pointer pill"  href="">Creación de contenido</h2>
                   
+                </div>
+                <div className="card group">
+            <div>
+                    <Icon
+                        icon="material-symbols:book-2-outline-rounded"
+                        width="50"
+                        height="50"
+                        className="p-2 rounded-full bg-primary text-black-500"
+                        />
+                    </div>
+                    <WorkLink className="cursor-pointer   font-heading" key="gaz" href="https://cadenaser.com/nacional/2023/06/21/dos-cortometrajes-universitarios-espanoles-en-el-programa-oficial-del-festival-internacional-de-cine-de-guadalajara-cadena-ser/">Cadena Ser</WorkLink>
+                    <p className='text-sm text-center font-bodyItalic'>
+                     "Dos cortometrajes universitarios españoles, en el programa oficial del Festival Internacional de Cine de Guadalajara
+                     "
+                    </p>
+                    <br></br>
+                    <WorkLink className="cursor-pointer   font-heading" key="out"  href="...">Lomography</WorkLink>
+                    <p className='text-sm text-center'>
+                        Coordinación en departamentos de dirección y producción, ganador a mejor dirección de arte en el Festival ADN 2025.
+                        </p>
+
                 </div>
 
             </div>

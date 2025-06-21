@@ -137,7 +137,7 @@ export default function ProjectSlider({ project }) {
         isOpen={!!modalData}
         onRequestClose={closeModal}
         shouldCloseOnOverlayClick={true}
-        className="fixed top-0 right-0 w-full sm:w-[500px] h-full bg-background text-text p-10 overflow-y-auto"
+        className="border-l-4 border-l-primary fixed top-0 right-0 w-full sm:w-[500px] h-full bg-background text-text p-10 overflow-y-auto"
         overlayClassName="fixed inset-0 bg-black/60 backdrop-blur-sm z-[9998]"
       >
         <div className="flex justify-between items-start mb-4">
@@ -145,10 +145,18 @@ export default function ProjectSlider({ project }) {
             {modalData?.title}{' '}
             <span className="text-xs font-heading">({modalData?.year})</span>
           </h2>
-          <button onClick={closeModal} className="text-3xl font-bodyBold cursor-pointer">×</button>
+          <button onClick={closeModal} className="text-3xl font-bodyBold cursor-pointer hover:text-accent">×</button>
         </div>
 
-        <h1 className="text-xl font-bodySemiBold mb-4">{modalData?.description}</h1>
+        <div className="mb-4 space-y-4 text-base font-body leading-relaxed">
+  {Array.isArray(modalData?.description) ? (
+    modalData.description.map((paragraph, i) => (
+      <p key={i}>{paragraph}</p>
+    ))
+  ) : (
+    <p>{modalData?.description}</p>
+  )}
+</div>
 
         <ul className="list-disc list-inside space-y-1 mb-4">
           {modalData?.disciplines.map((d, i) => (

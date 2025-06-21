@@ -64,7 +64,7 @@ export default function SkillCircle({
             cx={size / 2}
             cy={size / 2}
             r={radius}
-            stroke="#e5e7eb"
+            stroke="#CCCCCC"
             strokeWidth={strokeWidth}
             fill="none"
           />
