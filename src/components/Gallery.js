@@ -103,37 +103,42 @@ const images = [
   ];
   
 
-const Modal = ({ img, onClose }) => {
-  return createPortal(
-    <div className="modal-backdrop" onClick={onClose}>
-      <div className="modal-content" onClick={e => e.stopPropagation()}>
-        <img src={img.src} alt={img.title} />
-        <h2>{img.title}</h2>
-        <p>{img.description}</p>
-      </div>
-    </div>,
-    document.body
-  );
-};
+// const Modal = ({ img, onClose }) => {
+//   return createPortal(
+//     <div className="modal-backdrop" onClick={onClose}>
+//       <div className="modal-content" onClick={e => e.stopPropagation()}>
+//         <img src={img.src} alt={img.title} />
+//         <h2>{img.title}</h2>
+//         <p>{img.description}</p>
+//       </div>
+//     </div>,
+//     document.body
+//   );
+// };
 
 export default function Gallery() {
-  const [selected, setSelected] = useState(null);
+  const [selectedIndex, setSelectedIndex] = useState(null);
   const oldX = useRef(0);
   const oldY = useRef(0);
   const deltaX = useRef(0);
   const deltaY = useRef(0);
-  
+
+  const handlePrev = () => {
+    setSelectedIndex((prev) => (prev > 0 ? prev - 1 : images.length - 1));
+  };
+
+  const handleNext = () => {
+    setSelectedIndex((prev) => (prev < images.length - 1 ? prev + 1 : 0));
+  };
 
   useEffect(() => {
     const root = document.querySelector('.mwg_effect000');
-
     const handleMouseMove = (e) => {
-        deltaX.current = e.clientX - oldX.current;
-        deltaY.current = e.clientY - oldY.current;
-        oldX.current = e.clientX;
-        oldY.current = e.clientY;
-      };
-      
+      deltaX.current = e.clientX - oldX.current;
+      deltaY.current = e.clientY - oldY.current;
+      oldX.current = e.clientX;
+      oldY.current = e.clientY;
+    };
 
     const handleHover = (el) => {
       const img = el.querySelector('img');
@@ -141,10 +146,9 @@ export default function Gallery() {
       tl.timeScale(1.2);
       tl.to(img, {
         inertia: {
-            x: { velocity: deltaX.current * 30, end: 0 },
-            y: { velocity: deltaY.current * 30, end: 0 }
-          }
-          
+          x: { velocity: deltaX.current * 30, end: 0 },
+          y: { velocity: deltaY.current * 30, end: 0 }
+        }
       });
       tl.fromTo(img, { rotate: 0 }, {
         duration: 0.4,
@@ -155,32 +159,57 @@ export default function Gallery() {
       }, '<');
     };
 
-    root.addEventListener('mousemove', handleMouseMove);
-    root.querySelectorAll('.media').forEach(el => {
-      el.addEventListener('mouseenter', () => handleHover(el));
-    });
+    if (root) {
+      root.addEventListener('mousemove', handleMouseMove);
+      root.querySelectorAll('.media').forEach(el => {
+        el.addEventListener('mouseenter', () => handleHover(el));
+      });
+    }
 
     return () => {
-      root.removeEventListener('mousemove', handleMouseMove);
+      if (root) root.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (selectedIndex === null) return;
+      if (e.key === 'ArrowLeft') handlePrev();
+      if (e.key === 'ArrowRight') handleNext();
+      if (e.key === 'Escape') setSelectedIndex(null);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedIndex]);
 
   return (
     <section className="mwg_effect000 max-w-5xl mx-auto my-[9rem]">
       <div className="header flex flex-col items-center">
-       <h1 className="text-3xl font-bold mb-4 text-text">Mi álbum</h1> 
-        
+        <h1 className="text-3xl font-bold mb-4 text-text">Mi álbum</h1>
       </div>
 
       <div className="medias">
         {images.map((img, idx) => (
-          <div className="media" key={idx} onClick={() => setSelected(img)}>
+          <div className="media" key={idx} onClick={() => setSelectedIndex(idx)}>
             <img src={img.src} alt={img.title} />
           </div>
         ))}
       </div>
 
-      {selected && <Modal img={selected} onClose={() => setSelected(null)} />}
+      {selectedIndex !== null && createPortal(
+        <div className="modal-backdrop" onClick={() => setSelectedIndex(null)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <img src={images[selectedIndex].src} alt={images[selectedIndex].title} />
+            <h2>{images[selectedIndex].title}</h2>
+            <p>{images[selectedIndex].description}</p>
+            <div className="flex justify-between mt-4">
+              <button className="scale-[200%]" onClick={(e) => { e.stopPropagation(); handlePrev(); }}>←</button>
+              <button className="scale-[200%]" onClick={(e) => { e.stopPropagation(); handleNext(); }}>→</button>
+            </div>
+          </div>
+        </div>,
+        document.body
+      )}
     </section>
   );
 }

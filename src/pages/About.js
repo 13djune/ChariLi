@@ -100,13 +100,13 @@ export default function About() {
                     </div>
                     <WorkLink className="cursor-pointer   font-heading" key="gaz" href="https://cadenaser.com/nacional/2023/06/21/dos-cortometrajes-universitarios-espanoles-en-el-programa-oficial-del-festival-internacional-de-cine-de-guadalajara-cadena-ser/">Cadena Ser</WorkLink>
                     <p className='text-sm text-center font-bodyItalic'>
-                     "Dos cortometrajes universitarios españoles, en el programa oficial del Festival Internacional de Cine de Guadalajara
+                     "Presentar en México un proyecto que refleja mi tierra, Andalucía, y exportar Gazpachuelo a un festival de prestigio como el FICG, es todo un sueño para mí y mi equipo.
                      "
                     </p>
                     <br></br>
                     <WorkLink className="cursor-pointer   font-heading" key="out"  href="...">Lomography</WorkLink>
                     <p className='text-sm text-center'>
-                        Coordinación en departamentos de dirección y producción, ganador a mejor dirección de arte en el Festival ADN 2025.
+                    Seleccionada foto del día y foto del mes en Lomography.
                         </p>
 
                 </div>
@@ -117,9 +117,9 @@ export default function About() {
             <h1 className='text-xl'>Mis skills:</h1>
         <div className="grid grid-cols-3 gap-6 m-10">
   <SkillCircle  label="Dirección" icon="material-symbols:movie-outline-rounded" percent={80} />
-  <SkillCircle  label="Fotografía analógica/digital" icon="material-symbols:camera-roll-outline-rounded" percent={90} />
+  <SkillCircle  label="Fotografía analógica + digital" icon="material-symbols:camera-roll-outline-rounded" percent={90} />
   <SkillCircle  label="Creatividad" icon="material-symbols:lightbulb-2-outline-rounded" percent={100} />
-  <SkillCircle  label="Edición foto/vídeo" icon="material-symbols:edit-outline-rounded" percent={70} />
+  <SkillCircle  label="Edición foto + vídeo" icon="material-symbols:edit-outline-rounded" percent={70} />
   <SkillCircle  label="Social media" icon="material-symbols:animated-images-outline-rounded" percent={95} />
   <SkillCircle  label="Publicidad" icon="material-symbols:connect-without-contact-outline-rounded" percent={74} />
 </div>
