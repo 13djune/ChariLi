@@ -40,7 +40,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="mt-20  bg-background pt-8">
+    <footer className="mt-20  bg-background pt-8 z-0">
       <div className="relative overflow-hidden">
         <div className="marquee">
           <div className="marquee-content">
