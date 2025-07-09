@@ -43,7 +43,7 @@ export default function Footer() {
     <footer className="mt-20  bg-background pt-8 z-0">
       <div className="relative overflow-hidden">
         <div className="marquee">
-          <div className="marquee-content">
+          <div className="marquee-content mb-4">
             {[...icons, ...icons, ...icons].map((icon, i) => (
               <Icon
                 key={i}
