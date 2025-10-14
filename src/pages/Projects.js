@@ -19,6 +19,27 @@ import Quimica_6 from '../assets/img/QUIMICA_AVERZZO/000026.jpg';
 import Quimica_7 from '../assets/img/QUIMICA_AVERZZO/000030.jpg';
 import  Quimica_8 from '../assets/img/QUIMICA_AVERZZO/000035.jpg';
 import  Quimica_9 from '../assets/img/QUIMICA_AVERZZO/000036.jpg';
+import NaveOliva_1 from '../assets/img/NAVEOLIVA/NAVEOLIVA-009.jpg';
+import NaveOliva_2 from '../assets/img/NAVEOLIVA/NAVEOLIVA-011.jpg';
+import NaveOliva_3 from '../assets/img/NAVEOLIVA/NAVEOLIVA-012.jpg';
+import NaveOliva_4 from '../assets/img/NAVEOLIVA/NAVEOLIVA-019.jpg';
+import NaveOliva_5 from '../assets/img/NAVEOLIVA/NAVEOLIVA-020.jpg';
+import NaveOliva_6 from '../assets/img/NAVEOLIVA/NAVEOLIVA-024.jpg';
+import NaveOliva_7 from '../assets/img/NAVEOLIVA/NAVEOLIVA-027.jpg';
+import NaveOliva_8 from '../assets/img/NAVEOLIVA/NAVEOLIVA-042.jpg';
+import NaveOliva_9 from '../assets/img/NAVEOLIVA/NAVEOLIVA-044.jpg';
+import NaveOliva_10 from '../assets/img/NAVEOLIVA/NAVEOLIVA-060.jpg';
+import NaveOliva_11 from '../assets/img/NAVEOLIVA/NAVEOLIVA-062.jpg';
+import NaveOliva_12 from '../assets/img/NAVEOLIVA/NAVEOLIVA-082.jpg';
+import NaveOliva_13 from '../assets/img/NAVEOLIVA/NAVEOLIVA-102.jpg';
+import NaveOliva_14 from '../assets/img/NAVEOLIVA/NAVEOLIVA-107.jpg';
+import NaveOliva_15 from '../assets/img/NAVEOLIVA/NAVEOLIVA-114.jpg';
+import NaveOliva_16 from '../assets/img/NAVEOLIVA/NAVEOLIVA-127.jpg';
+import NaveOliva_17 from '../assets/img/NAVEOLIVA/NAVEOLIVA-137.jpg';
+import NaveOliva_18 from '../assets/img/NAVEOLIVA/NAVEOLIVA-151.jpg';
+import NaveOliva_19 from '../assets/img/NAVEOLIVA/NAVEOLIVA-162.jpg';
+import NaveOliva_20 from '../assets/img/NAVEOLIVA/NAVEOLIVA-166.jpg';
+import NaveOliva_21 from '../assets/img/NAVEOLIVA/NAVEOLIVA-174.jpg';
 import DeKe_0 from '../assets/img/QUIMICA_AVERZZO/000027.jpg';
 import DeKe_1 from '../assets/img/QUIMICA_AVERZZO/Escaner_20240105(2).png';
 import DeKe_2 from '../assets/img/QUIMICA_AVERZZO/Escaner_20240105.png';
@@ -32,6 +53,8 @@ import Randall_1 from '../assets/img/RANDALL_BOGGS/806232.jpg';
 import Randall_2 from '../assets/img/RANDALL_BOGGS/806234.jpg';
 import Locurote_0 from '../assets/img/LOCUROTE/Locurote_0.webp';
 import Locurote_1 from '../assets/img/LOCUROTE/Locurote_2.png';
+
+import LiquidEther from '../components/LiquidEther';
 
 const projects = [
   {
@@ -104,28 +127,50 @@ const projects = [
     disciplines: ['Fotografía fija', 'Dirección Creativa'],
     link: 'https://www.youtube.com/watch?v=Wr7C414tpU8',
   },
-  // {
-  //   id: 5,
-  //   title: 'Crisálida - Mikemirror',
-  //   year: 2022,
-  //   description: 'YA NO ESTA EL VIDEOCLIP',
-  //   media: [
-  //     { type: 'image', src: Gazpachuelo_0 },
-  //   ],
-  //   disciplines: ['Dirección artística', 'Dirección Creativa'],
-  //   link: 'https://www.youtube.com/watch?v=Wr7C414tpU8',
-  // },
-  // {
-  //   id: 6,
-  //   title: 'Vídeos para reels The Mad Plug',
-  //   year: 2022,
-  //   description: 'YA NO ESTA EL VIDEO EN INSTA',
-  //   media: [
-  //     { type: 'image', src: Gazpachuelo_0 },
-  //   ],
-  //   disciplines: ['Operación de cámara', 'Publicidad', ' Grabación de vídeo'],
-  //   link: 'https://www.youtube.com/watch?v=Wr7C414tpU8',
-  // },
+  {
+    id: 5,
+    title: 'Nave Oliva',
+    year: 2025,
+    description: 'Nave Oliva es un taller y espacio creativo en Lucero, Madrid. Se presenta como un "playground" para artistas, enfocado en el diseño, la dirección de arte y la fabricación, sirviendo como un punto de encuentro y trabajo para la comunidad artística.Nave Oliva es un taller y espacio creativo en Lucero, Madrid. Se presenta como un "playground" para artistas, enfocado en el diseño, la dirección de arte y la fabricación, sirviendo como un punto de encuentro y trabajo para la comunidad artística.',
+    media: [
+      { type: 'image', src: NaveOliva_1 },
+      { type: 'image', src: NaveOliva_2 },
+      { type: 'image', src: NaveOliva_3 },
+      { type: 'image', src: NaveOliva_4 },
+      { type: 'image', src: NaveOliva_5 },
+      { type: 'image', src: NaveOliva_6 },
+      { type: 'image', src: NaveOliva_7 },
+      { type: 'image', src: NaveOliva_8 },
+      { type: 'image', src: NaveOliva_9 },
+      { type: 'image', src: NaveOliva_10 },
+      { type: 'image', src: NaveOliva_11 },
+      { type: 'image', src: NaveOliva_12},
+      { type: 'image', src: NaveOliva_13},
+      { type: 'image', src: NaveOliva_14},
+      { type: 'image', src: NaveOliva_15},
+      { type: 'image', src: NaveOliva_16},
+      { type: 'image', src: NaveOliva_17 },
+      { type: 'image', src: NaveOliva_18},
+      { type: 'image', src: NaveOliva_19},
+      { type: 'image', src: NaveOliva_20},
+      { type: 'image', src: NaveOliva_21 },
+    
+      
+    ],
+    disciplines: ['Fotografía', 'Fotografía fija', 'BTS'],
+    link: 'https://www.instagram.com/naveoliva/?hl=en',
+  },
+  {
+    id: 6,
+    title: 'BenidormFest',
+    year: 2022,
+    description: '',
+    media: [
+      { type: 'image', src: Gazpachuelo_0 },
+    ],
+    disciplines: ['Fotografía', 'Fotografía fija', 'BTS', 'Postproducción'],
+    link: 'https://www.youtube.com/watch?v=Wr7C414tpU8',
+  },
   {
     id: 7,
     title: 'LA CORRIENTE (Making Of)',
@@ -192,12 +237,34 @@ const projects = [
 ];
 export default function Proyectos() {
   return (
-    <section className="mx-auto py-12">
-      {projects.map((project) => (
-        <section id={project.title.toLowerCase()} key={project.id} className="py-12 border-t-2 px-0 border-primary max-w-full ">
+    <>
+<div style={{ width: '100%', height: 800, position: 'relative' }}>
+ 
+  <LiquidEther
+    colors={[ '#ffcc00', '#130bf4', '#fed636' ]}
+    mouseForce={10}
+    cursorSize={100}
+    isViscous={false}
+    viscous={30}
+    iterationsViscous={32}
+    iterationsPoisson={32}
+    resolution={0.5}
+    isBounce={true}
+    autoDemo={true}
+    autoSpeed={0.25}
+    autoIntensity={1.1}
+    takeoverDuration={0.25}
+    autoResumeDelay={3000}
+    autoRampDuration={0.6}
+    />
+</div>      
+    <section className="mx-auto pb-12">
+{projects.map((project) => (
+  <section id={project.title.toLowerCase()} key={project.id} className="py-12 border-t-2 px-0 border-primary max-w-full ">
           <ProjectSlider project={project} className=""/>
         </section>
       ))}
     </section>
+      </>
   );
 }

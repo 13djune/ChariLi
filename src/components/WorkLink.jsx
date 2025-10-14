@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 
-export default function WorkLink({ children, href = '#' }) {
+export default function WorkLink({ children, href = '#', className = '' }) {
   const linkRef = useRef(null);
   const underlineRef = useRef(null);
 
@@ -27,18 +27,21 @@ export default function WorkLink({ children, href = '#' }) {
       { width: '0%', left: '100%', duration: 0.6, ease: 'power2.in' }
     );
 
-    link.addEventListener('mouseenter', () => {
+    const handleEnter = () => {
       tl.pause(0);
       tl.tweenTo('midway');
-    });
+    };
 
-    link.addEventListener('mouseleave', () => {
+    const handleLeave = () => {
       tl.play();
-    });
+    };
+
+    link.addEventListener('mouseenter', handleEnter);
+    link.addEventListener('mouseleave', handleLeave);
 
     return () => {
-      link.removeEventListener('mouseenter', () => {});
-      link.removeEventListener('mouseleave', () => {});
+      link.removeEventListener('mouseenter', handleEnter);
+      link.removeEventListener('mouseleave', handleLeave);
       tl.kill();
     };
   }, []);
@@ -49,12 +52,12 @@ export default function WorkLink({ children, href = '#' }) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="text-text font-heading relative inline-block font-bold text-[16px]"
+      className={`cursor-pointer relative inline-block font-heading font-bold text-[16px] transition-colors duration-300 ${className}`}
     >
-      <span className="text-text relative z-10">{children}</span>
+      <span className="relative z-10 transition-colors duration-300">{children}</span>
       <span
         ref={underlineRef}
-        className="text-text absolute bottom-0 left-0 h-[0.2em] w-0 bg-current"
+        className="absolute bottom-0 left-0 h-[0.2em] w-0 bg-current transition-all duration-300"
       />
     </a>
   );
