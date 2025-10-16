@@ -29,7 +29,7 @@ export default function Header() {
 
   return (
     <header
-      className={`sticky top-0 left-0 w-full flex justify-between items-center px-6 py-4 z-50 text-text bg-none transition-transform duration-300
+      className={`fixed top-0 left-0 w-full flex justify-between items-center px-6 py-4 z-50 text-text bg-none transition-transform duration-300
         ${showHeader ? 'translate-y-0' : '-translate-y-[150%]'}`}
     >
       <div className="text-xl font-bold tracking-tight font-heading">

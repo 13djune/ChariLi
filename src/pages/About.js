@@ -78,7 +78,7 @@ export default function About() {
   </WorkLink>
 
   <p className="text-sm text-center transition-colors duration-300 dark:group-hover:text-text-inverse">
-    Categoría Mejor Corto en el Festival ADN 2023. Presentado y participando en el Festival
+    Categoría Mejor Corto en el <a rel="noreferrer" target="_blank" className='font-bold' href='https://festivaladn.com/#:~:text=Gazpachuelo%20de%20Chari%20Li%20Rinc%C3%B3n%20Rivas%20(Mejor%20Cortometraje)'>Festival ADN 2023.</a> Presentado y participando en el Festival
     Internacional de Cine en Guadalajara (México).
   </p>
 
@@ -148,7 +148,7 @@ export default function About() {
             <p className="text-sm text-center font-bodyItalic transition-colors duration-300 dark:group-hover:text-text-inverse">
               "Presentar en México un proyecto que refleja mi tierra, Andalucía, y exportar
               Gazpachuelo a un festival de prestigio como el FICG, es todo un sueño para mí y mi
-              equipo."
+              equipo." -Chari Li
             </p>
 
             <br />

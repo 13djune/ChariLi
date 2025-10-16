@@ -60,7 +60,7 @@ export default function Contacto() {
               key={key}
               onMouseEnter={() => setHoveredKey(key)}
               onMouseLeave={() => setHoveredKey(null)}
-              className="mx-8"
+              className="mx-8 text-text "
             >
               <WorkLink className="" href={href}>{label}</WorkLink>
             </div>

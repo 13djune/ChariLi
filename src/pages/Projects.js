@@ -54,7 +54,7 @@ import Randall_2 from '../assets/img/RANDALL_BOGGS/806234.jpg';
 import Locurote_0 from '../assets/img/LOCUROTE/Locurote_0.webp';
 import Locurote_1 from '../assets/img/LOCUROTE/Locurote_2.png';
 
-import LiquidEther from '../components/LiquidEther';
+import Orb from '../components/Orb';
 
 const projects = [
   {
@@ -77,17 +77,17 @@ const projects = [
     disciplines: ['Directora', 'Dirección Creativa', 'Producción audiovisual'],
     link: 'https://www.youtube.com/watch?v=KA-7mkDLY28',
   },
-  {
-    id: 2,
-    title: 'DURA',
-    year: 2023,
-    description: 'Grabando en un coche para Rakky Ripper en el videoclip "DURA"',
-    media: [
-      { type: 'image', src: Gazpachuelo_0 },
-    ],
-    disciplines: ['Operación de cámara', 'Dirección Creativa'],
-    link: 'https://www.youtube.com/watch?v=ifsAMA9N4Mg',
-  },
+  // {
+  //   id: 2,
+  //   title: 'DURA',
+  //   year: 2023,
+  //   description: 'Grabando en un coche para Rakky Ripper en el videoclip "DURA"',
+  //   media: [
+  //     { type: 'image', src: Gazpachuelo_0 },
+  //   ],
+  //   disciplines: ['Operación de cámara', 'Dirección Creativa'],
+  //   link: 'https://www.youtube.com/watch?v=ifsAMA9N4Mg',
+  // },
   {
     id: 3,
     title: 'Locurote',
@@ -160,17 +160,17 @@ const projects = [
     disciplines: ['Fotografía', 'Fotografía fija', 'BTS'],
     link: 'https://www.instagram.com/naveoliva/?hl=en',
   },
-  {
-    id: 6,
-    title: 'BenidormFest',
-    year: 2022,
-    description: '',
-    media: [
-      { type: 'image', src: Gazpachuelo_0 },
-    ],
-    disciplines: ['Fotografía', 'Fotografía fija', 'BTS', 'Postproducción'],
-    link: 'https://www.youtube.com/watch?v=Wr7C414tpU8',
-  },
+  // {
+  //   id: 6,
+  //   title: 'BenidormFest',
+  //   year: 2022,
+  //   description: '',
+  //   media: [
+  //     { type: 'image', src: Gazpachuelo_0 },
+  //   ],
+  //   disciplines: ['Fotografía', 'Fotografía fija', 'BTS', 'Postproducción'],
+  //   link: 'https://www.youtube.com/watch?v=Wr7C414tpU8',
+  // },
   {
     id: 7,
     title: 'LA CORRIENTE (Making Of)',
@@ -182,20 +182,20 @@ const projects = [
       { type: 'image', src: Corriente_2 },
       { type: 'image', src: Corriente_3 },
     ],
-    disciplines: ['Edición de vídeo', 'Grabación de vídeo', 'BTS', 'Postproducción'],
+    disciplines: ['Edición de vídeo', 'Grabación de vídeo', 'BTS', 'Postproducción', 'Fotografía fija'],
     link: 'https://www.youtube.com/watch?v=rbM2dwoCa6k',
   },
-  {
-    id: 8,
-    title: 'Escapar (Making Of)',
-    year: 2022,
-    description: 'Grabación del BTS de "Escapar" de Marta Sango',
-    media: [
-      { type: 'image', src: Gazpachuelo_0 },
-    ],
-    disciplines: ['Edición de vídeo', 'Grabación de vídeo', 'BTS'],
-    link: 'https://www.youtube.com/watch?v=VBfAksHBNY0',
-  },
+  // {
+  //   id: 8,
+  //   title: 'Escapar (Making Of)',
+  //   year: 2022,
+  //   description: 'Grabación del BTS de "Escapar" de Marta Sango',
+  //   media: [
+  //     { type: 'image', src: Gazpachuelo_0 },
+  //   ],
+  //   disciplines: ['Edición de vídeo', 'Grabación de vídeo', 'BTS'],
+  //   link: 'https://www.youtube.com/watch?v=VBfAksHBNY0',
+  // },
   {
     id: 9,
     title: 'Funked Up',
@@ -207,7 +207,7 @@ const projects = [
       { type: 'image', src: Funked_2 },
 
     ],
-    disciplines: ['Dirección artística',],
+    disciplines: ['Dirección artística', 'Fotografía fija', 'BTS'],
     link: 'https://www.youtube.com/watch?v=jTVdulBDvhE',
   },
   {
@@ -223,41 +223,34 @@ const projects = [
     disciplines: ['Fotografía', 'Fotografía fija'],
     link: 'https://www.youtube.com/watch?v=vw2QzYA7Huk',
   },
-  {
-    id: 11,
-    title: '2 + 2',
-    year: 2021,
-    description: 'Videoclip de 2+2 con Andrea Duro y Daniel Arias. Sonido, Dirección Creativa y foto fija (portada del single).',
-    media: [
-      { type: 'image', src: Gazpachuelo_0 },
-    ],
-    disciplines: ['Dirección artística', 'Dirección creativa', 'Fotografía fija', 'Grabación de sonido'],
-    link: 'https://www.youtube.com/watch?v=SR9kwKygzw8',
-  },
+  // {
+  //   id: 11,
+  //   title: '2 + 2',
+  //   year: 2021,
+  //   description: 'Videoclip de 2+2 con Andrea Duro y Daniel Arias. Sonido, Dirección Creativa y foto fija (portada del single).',
+  //   media: [
+  //     { type: 'image', src: Gazpachuelo_0 },
+  //   ],
+  //   disciplines: ['Dirección artística', 'Dirección creativa', 'Fotografía fija', 'Grabación de sonido'],
+  //   link: 'https://www.youtube.com/watch?v=SR9kwKygzw8',
+  // },
 ];
 export default function Proyectos() {
   return (
     <>
-<div style={{ width: '100%', height: 800, position: 'relative' }}>
- 
-  <LiquidEther
-    colors={[ '#ffcc00', '#130bf4', '#fed636' ]}
-    mouseForce={10}
-    cursorSize={100}
-    isViscous={false}
-    viscous={30}
-    iterationsViscous={32}
-    iterationsPoisson={32}
-    resolution={0.5}
-    isBounce={true}
-    autoDemo={true}
-    autoSpeed={0.25}
-    autoIntensity={1.1}
-    takeoverDuration={0.25}
-    autoResumeDelay={3000}
-    autoRampDuration={0.6}
-    />
-</div>      
+<div style={{ width: '100%', height: '800px', position: 'relative' }}>
+  <div className='flex flex-col items-center absolute top-[50%] left-[50%]  -translate-x-1/2 -translate-y-1/2'>
+  <h1 className='font-heading text-text text-5xl mb-6'>Proyectos</h1>
+  <p className='text-text'>Aquí podrás ver todos los proyectos en los que he participado.</p>
+
+  </div>
+  <Orb
+    hoverIntensity={0.5}
+    rotateOnHover={true}
+    hue={0}
+    forceHoverState={false}
+  />
+</div>    
     <section className="mx-auto pb-12">
 {projects.map((project) => (
   <section id={project.title.toLowerCase()} key={project.id} className="py-12 border-t-2 px-0 border-primary max-w-full ">
