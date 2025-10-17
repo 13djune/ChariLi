@@ -1,4 +1,8 @@
 import Lomography from '../assets/img/CONTACT/Lomography.png';
+import Email from '../assets/img/CONTACT/Email.png';
+import Linkedin from '../assets/img/CONTACT/Linkedin.png';
+import Queso from '../assets/img/CONTACT/Queso.png';
+import Sevenup from '../assets/img/CONTACT/Sevenup.png';
 import { useState } from 'react';
 import WorkLink from '../components/WorkLink';
 
@@ -9,13 +13,13 @@ export default function Contacto() {
     {
       href: "https://www.instagram.com/sevenupfresquito/",
       label: "@sevenupfresquito",
-      image: "/images/fresquito.jpg",
+      image: Sevenup,
       key: "1",
     },
     {
       href: "https://www.instagram.com/quesoenpolvo/",
       label: "@quesoenpolvo",
-      image: "/images/queso.jpg",
+      image: Queso,
       key: "2",
     },
     {
@@ -27,13 +31,13 @@ export default function Contacto() {
     {
       href: "https://www.linkedin.com/in/charili/",
       label: "LinkedIn",
-      image: "/images/linkedin.jpg",
+      image: Linkedin,
       key: "4",
     },
     {
       href: "mailto:charidelafreedom@gmail.com",
       label: "Email",
-      image: "/images/email.jpg",
+      image: Email,
       key: "5",
     },
   ];

@@ -506,3 +506,124 @@ input:checked ~ .overlay {
   align-items: center;
   justify-content: center;
 }
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.9); 
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+}
+
+.nav-button {
+  position: absolute;
+  top: 50%; 
+  transform: translateY(-50%); 
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 2.5rem; 
+  padding: 0.5rem 1rem;
+  border: none;
+  cursor: pointer;
+  z-index: 1010; 
+  transition: background-color 0.2s;
+  border-radius: 9999px;
+}
+
+.nav-button:hover {
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.nav-left {
+  left: 1rem; 
+}
+
+.nav-right {
+  right: 1rem; 
+}
+/* Lightbox Modal Styles */
+.modal-backdrop-lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.85); /* Darker overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000; /* Ensure it's above other modals */
+  backdrop-filter: blur(8px); /* Optional: blur background */
+}
+
+.modal-content-lightbox {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 90vw;
+  max-height: 90vh;
+  background-color: #1a1a1a; /* Dark background for the image content */
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.modal-content-lightbox img {
+  display: block;
+  max-width: 100%;
+  max-height: calc(85vh - 40px); /* Adjust for info bar if present */
+  object-fit: contain;
+  margin-bottom: 10px; /* Space between image and info bar */
+}
+
+.nav-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: none;
+  padding: 15px 20px;
+  cursor: pointer;
+  font-size: 2em;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  transition: background-color 0.3s ease;
+  z-index: 10001; /* Above image, below backdrop */
+}
+
+.nav-button:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.nav-left {
+  left: 20px;
+}
+
+.nav-right {
+  right: 20px;
+}
+
+/* Info bar for image title/caption */
+.info-bar {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 10px 15px;
+  width: 100%;
+  text-align: center;
+  font-size: 0.9em;
+  font-family: sans-serif;
+}
+.marquee-item img {
+  pointer-events: auto;
+}

@@ -1,4 +1,7 @@
+import React, { useState, useEffect, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import ProjectSlider from '../components/ProjectSlider';
+
 import Gazpachuelo_0 from '../assets/img/GAZPACHUELO/CARTEL_GANADOR.jpg';
 import Gazpachuelo_1 from '../assets/img/GAZPACHUELO/596b0024-91de-4245-8a9d-e3b36581695a.jpg';
 import Gazpachuelo_2 from '../assets/img/GAZPACHUELO/IMG_5628.jpg';
@@ -55,6 +58,69 @@ import Locurote_0 from '../assets/img/LOCUROTE/Locurote_0.webp';
 import Locurote_1 from '../assets/img/LOCUROTE/Locurote_2.png';
 
 import Orb from '../components/Orb';
+
+
+
+// =================================================================
+// 1. LightboxModal Componente (para mostrar y navegar entre imágenes)
+// =================================================================
+const LightboxModal = ({ mediaList, initialIndex, onClose }) => {
+  // HOOKS se llaman siempre al inicio
+  const [currentIndex, setCurrentIndex] = useState(initialIndex);
+
+  // Filtrar solo imágenes para la galería
+  const images = mediaList.filter(item => item.type === 'image');
+  const totalImages = images.length;
+
+  const handlePrev = useCallback((e) => {
+    e.stopPropagation();
+    setCurrentIndex((prev) => (prev > 0 ? prev - 1 : totalImages - 1));
+  }, [totalImages]);
+
+  const handleNext = useCallback((e) => {
+    e.stopPropagation();
+    setCurrentIndex((prev) => (prev < totalImages - 1 ? prev + 1 : 0));
+  }, [totalImages]);
+
+  useEffect(() => {
+    if (totalImages === 0) return;
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowLeft') handlePrev(e);
+      if (e.key === 'ArrowRight') handleNext(e);
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [onClose, handlePrev, handleNext, totalImages]);
+
+
+  const currentImage = images[currentIndex];
+  if (!currentImage) return null;
+
+  return createPortal(
+    <div className="modal-backdrop-lightbox" onClick={onClose}>
+      <button className="nav-button nav-left" onClick={handlePrev}>←</button>
+
+      <div className="modal-content-lightbox" onClick={(e) => e.stopPropagation()}>
+        <img
+          src={currentImage.src}
+          alt={`Imagen ${currentIndex + 1}`}
+          className="max-w-full max-h-[85vh] object-contain"
+        />
+        <div className='info-bar'>
+            <p>{currentImage.title || `Imagen ${currentIndex + 1}`}</p>
+        </div>
+      </div>
+
+      <button className="nav-button nav-right" onClick={handleNext}>→</button>
+    </div>,
+    document.body
+  );
+};
+// =================================================================
+// 2. Componente Proyectos con Estado del Modal
+// =================================================================
 
 const projects = [
   {
@@ -236,28 +302,65 @@ const projects = [
   // },
 ];
 export default function Proyectos() {
+
+  // Estado para controlar el modal de la galería
+  const [modalState, setModalState] = useState({
+    isOpen: false,
+    mediaList: [],
+    initialIndex: 0,
+  });
+
+  const openModal = (mediaList, initialIndex) => {
+    setModalState({
+      isOpen: true,
+      mediaList,
+      initialIndex,
+    });
+  };
+
+  const closeModal = () => {
+    setModalState({
+      isOpen: false,
+      mediaList: [],
+      initialIndex: 0,
+    });
+  };
+
   return (
     <>
-<div style={{ width: '100%', height: '800px', position: 'relative' }}>
-  <div className='flex flex-col items-center absolute top-[50%] left-[50%]  -translate-x-1/2 -translate-y-1/2'>
-  <h1 className='font-heading text-text text-5xl mb-6'>Proyectos</h1>
-  <p className='text-text'>Aquí podrás ver todos los proyectos en los que he participado.</p>
+        <div style={{ width: '100%', height: '800px', position: 'relative' }}>
+        <div className='flex flex-col items-center absolute top-[50%] left-[50%]  -translate-x-1/2 -translate-y-1/2'>
+        <h1 className='font-heading text-text text-5xl mb-6'>Proyectos</h1>
+        <p className='text-text'>Aquí podrás ver todos los proyectos en los que he participado.</p>
 
-  </div>
-  <Orb
-    hoverIntensity={0.5}
-    rotateOnHover={true}
-    hue={0}
-    forceHoverState={false}
-  />
-</div>    
-    <section className="mx-auto pb-12">
-{projects.map((project) => (
-  <section id={project.title.toLowerCase()} key={project.id} className="py-12 border-t-2 px-0 border-primary max-w-full ">
-          <ProjectSlider project={project} className=""/>
+        </div>
+        <Orb
+            hoverIntensity={0.5}
+            rotateOnHover={true}
+            hue={0}
+            forceHoverState={false}
+        />
+        </div>    
+        <section className="mx-auto pb-12">
+            {projects.map((project) => (
+                <section id={project.title.toLowerCase()} key={project.id} className="py-12 border-t-2 px-0 border-primary max-w-full ">
+                    
+                    <ProjectSlider project={project} onImageClick={openModal} />
+                    
+                    
+                    
+                </section>
+            ))}
         </section>
-      ))}
-    </section>
-      </>
+        
+        {/* Renderizado condicional del Modal */}
+       {modalState.isOpen && (
+          <LightboxModal
+            mediaList={modalState.mediaList}
+            initialIndex={modalState.initialIndex}
+            onClose={closeModal}
+          />
+      )}
+    </>
   );
 }

@@ -6,11 +6,11 @@ import { Icon } from '@iconify/react';
 
 Modal.setAppElement('#root');
 
-export default function ProjectSlider({ project }) {
+export default function ProjectSlider({ project, onImageClick }) {
   const [modalData, setModalData] = useState(null);
   const scrollRef = useRef(null);
 
-  const openModal = () => setModalData(project);
+  const openInfoModal = () => setModalData(project);
   const closeModal = () => setModalData(null);
 
   useEffect(() => {
@@ -18,7 +18,9 @@ export default function ProjectSlider({ project }) {
     if (!el) return;
   
     let isDragging = false;
+    let startX = 0;
     let lastX = 0;
+    let moved = false;
     let velocity = 0;
     let animationId;
     let isPaused = false;
@@ -26,9 +28,7 @@ export default function ProjectSlider({ project }) {
     const scroll = () => {
       if (!isPaused && !isDragging) {
         el.scrollLeft += 0.5;
-        if (el.scrollLeft >= el.scrollWidth / 2) {
-          el.scrollLeft = 0;
-        }
+        if (el.scrollLeft >= el.scrollWidth / 2) el.scrollLeft = 0;
       }
       animationId = requestAnimationFrame(scroll);
     };
@@ -36,6 +36,8 @@ export default function ProjectSlider({ project }) {
   
     const onMouseDown = (e) => {
       isDragging = true;
+      moved = false;
+      startX = e.clientX;
       lastX = e.clientX;
       velocity = 0;
       el.classList.add('dragging');
@@ -47,11 +49,18 @@ export default function ProjectSlider({ project }) {
       el.scrollLeft -= delta;
       velocity = delta;
       lastX = e.clientX;
+      if (Math.abs(e.clientX - startX) > 5) moved = true;
     };
   
-    const onMouseUp = () => {
+    const onMouseUp = (e) => {
       isDragging = false;
       el.classList.remove('dragging');
+  
+      // 🔥 Solo bloquea el click si realmente se movió
+      if (moved) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
   
       const inertia = () => {
         if (Math.abs(velocity) > 0.1) {
@@ -88,6 +97,8 @@ export default function ProjectSlider({ project }) {
     };
   }, []);
   
+  
+  
 
   return (
     <div className="space-y-12 px-12">
@@ -104,7 +115,7 @@ export default function ProjectSlider({ project }) {
                 className="text-current"
               />
             }
-            onClick={openModal}
+            onClick={openInfoModal}
           />
         </div>
 
@@ -113,11 +124,24 @@ export default function ProjectSlider({ project }) {
             {[...project.media, ...project.media].map((media, i) => (
               <div key={i} className="marquee-item">
                 {media.type === 'image' ? (
-                  <img
-                    src={media.src}
-                    alt={`${project.title} ${i + 1}`}
-                    className="h-[320px] w-auto rounded-xl pointer-events-none"
-                  />
+                  <button
+                    type="button"
+                    onClick={() =>
+                      onImageClick(
+                        project.media,
+                        project.media.filter(item => item.type === 'image')
+                          .findIndex(item => item.src === media.src)
+                      )
+                    }
+                    className="p-0 m-0 border-0 bg-transparent cursor-pointer focus:outline-none"
+                  >
+                    <img
+                      src={media.src}
+                      alt={`${project.title} ${i + 1}`}
+                      className="h-[320px] w-auto rounded-xl transition-transform duration-300 hover:scale-105"
+                      draggable={false}
+                    />
+                  </button>
                 ) : (
                   <video
                     src={media.src}
@@ -145,18 +169,23 @@ export default function ProjectSlider({ project }) {
             {modalData?.title}{' '}
             <span className="text-xs font-heading">({modalData?.year})</span>
           </h2>
-          <button onClick={closeModal} className="text-3xl font-bodyBold cursor-pointer hover:text-accent">×</button>
+          <button
+            onClick={closeModal}
+            className="text-3xl font-bodyBold cursor-pointer hover:text-accent"
+          >
+            ×
+          </button>
         </div>
 
         <div className="mb-4 space-y-4 text-base font-body leading-relaxed">
-  {Array.isArray(modalData?.description) ? (
-    modalData.description.map((paragraph, i) => (
-      <p key={i}>{paragraph}</p>
-    ))
-  ) : (
-    <p>{modalData?.description}</p>
-  )}
-</div>
+          {Array.isArray(modalData?.description) ? (
+            modalData.description.map((paragraph, i) => (
+              <p key={i}>{paragraph}</p>
+            ))
+          ) : (
+            <p>{modalData?.description}</p>
+          )}
+        </div>
 
         <ul className="list-disc list-inside space-y-1 mb-4">
           {modalData?.disciplines.map((d, i) => (

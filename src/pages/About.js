@@ -12,12 +12,10 @@ export default function About() {
     <>
 
       <section className="max-w-4xl mx-auto">
-        <div className="flex flex-row items-center justify-between">
+        <div className="flex flex-row items-center justify-between mt-16">
           <div ref={containerRef} className="relative w-[200%] mx-auto">
-            {/* Imagen de fondo como base del tamaño */}
             <img src={xari} alt="Fondo" className="h-full w-full block" />
 
-            {/* Bolas que rebotan encima de la imagen */}
             <MrPotato
               className="z-10"
               image="https://assets.codepen.io/16327/circle.png"

@@ -124,13 +124,16 @@ export default function Gallery() {
   const deltaY = useRef(0);
 
   const handlePrev = () => {
+    // Evita la propagación de eventos si el click es en el botón
     setSelectedIndex((prev) => (prev > 0 ? prev - 1 : images.length - 1));
   };
 
   const handleNext = () => {
+    // Evita la propagación de eventos si el click es en el botón
     setSelectedIndex((prev) => (prev < images.length - 1 ? prev + 1 : 0));
   };
-
+  
+  // ... (Tu useEffect para el efecto mwg_effect000)
   useEffect(() => {
     const root = document.querySelector('.mwg_effect000');
     const handleMouseMove = (e) => {
@@ -171,6 +174,7 @@ export default function Gallery() {
     };
   }, []);
 
+  // ... (Tu useEffect para la navegación por teclado)
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (selectedIndex === null) return;
@@ -181,6 +185,7 @@ export default function Gallery() {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [selectedIndex]);
+
 
   return (
     <section className="mwg_effect000 max-w-5xl mx-auto my-[9rem]">
@@ -197,16 +202,34 @@ export default function Gallery() {
       </div>
 
       {selectedIndex !== null && createPortal(
+        // El backdrop maneja el cierre al hacer clic fuera
         <div className="modal-backdrop" onClick={() => setSelectedIndex(null)}>
+            
+          {/* Botón de navegación izquierda (Prev) */}
+          {/* Añadimos 'nav-button' y 'nav-left' para el CSS/Tailwind */}
+          <button 
+            className="nav-button nav-left" 
+            onClick={(e) => { e.stopPropagation(); handlePrev(); }}
+          >
+            ←
+          </button>
+
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <img src={images[selectedIndex].src} alt={images[selectedIndex].title} />
             <h2>{images[selectedIndex].title}</h2>
             <p>{images[selectedIndex].description}</p>
-            <div className="flex justify-between mt-4">
-              <button className="scale-[200%]" onClick={(e) => { e.stopPropagation(); handlePrev(); }}>←</button>
-              <button className="scale-[200%]" onClick={(e) => { e.stopPropagation(); handleNext(); }}>→</button>
-            </div>
+            {/* Los botones ya no están aquí */}
           </div>
+
+          {/* Botón de navegación derecha (Next) */}
+          {/* Añadimos 'nav-button' y 'nav-right' para el CSS/Tailwind */}
+          <button 
+            className="nav-button nav-right" 
+            onClick={(e) => { e.stopPropagation(); handleNext(); }}
+          >
+            →
+          </button>
+
         </div>,
         document.body
       )}
