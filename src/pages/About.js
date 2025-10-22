@@ -2,11 +2,17 @@ import { Icon } from '@iconify/react';
 import FancyButton from '../components/FancyButton';
 import MrPotato from '../components/MrPotato';
 import xari from '../assets/img/xari.webp';
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import WorkLink from '../components/WorkLink';
 import SkillCircle from '../components/SkillCircle';
+import Lomo1 from '../assets/img/lomography/Lomo1.png';
+import Lomo2 from '../assets/img/lomography/Lomo2.png';
+import Lomo3 from '../assets/img/lomography/Lomo3.png';
+
 export default function About() {
   const containerRef = useRef(null);
+  const lomographyRef = useRef(null);
+  const [isLomographyHovered, setIsLomographyHovered] = useState(false);
 
   return (
     <>
@@ -84,7 +90,7 @@ export default function About() {
 
   <WorkLink
     className="cursor-pointer font-heading text-text dark:group-hover:text-text-inverse transition-colors duration-300"
-    href="..."
+    href="https://www.instagram.com/festivaladn/p/DITnXBNI4z6/?hl=en"
   >
     "OutS1d3"
   </WorkLink>
@@ -151,12 +157,29 @@ export default function About() {
 
             <br />
 
-            <WorkLink
-              className="cursor-pointer font-heading text-text dark:group-hover:text-text-inverse transition-colors duration-300"
-              href="..."
+            <div
+              ref={lomographyRef}
+              className="relative inline-block"
+              onMouseEnter={() => setIsLomographyHovered(true)}
+              onMouseLeave={() => setIsLomographyHovered(false)}
             >
-              Lomography
-            </WorkLink>
+              <WorkLink href="https://www.lomography.com/homes/charili/photos?order=trending">Lomography</WorkLink>
+              
+              {isLomographyHovered && (
+                <>
+                  <img className="absolute top-10 -right-10 z-10 shadow-md"
+                   src={Lomo1}
+                   />
+                    <img className="absolute top-8 -left-10 z-10 shadow-md"
+                   src={Lomo2}
+                   />
+                    <img className="absolute -top-28 -rignt-10 z-10 shadow-md"
+                   src={Lomo3}
+                   />
+              
+                </>
+              )}
+            </div>
 
             <p className="text-sm text-center transition-colors duration-300 dark:group-hover:text-text-inverse">
               Seleccionada foto del día y foto del mes en Lomography.
