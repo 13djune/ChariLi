@@ -2,7 +2,7 @@ import { Icon } from '@iconify/react';
 import FancyButton from '../components/FancyButton';
 import MrPotato from '../components/MrPotato';
 import xari from '../assets/img/xari.webp';
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState } from 'react';
 import WorkLink from '../components/WorkLink';
 import SkillCircle from '../components/SkillCircle';
 import Lomo1 from '../assets/img/lomography/Lomo1.png';
@@ -13,6 +13,27 @@ export default function About() {
   const containerRef = useRef(null);
   const lomographyRef = useRef(null);
   const [isLomographyHovered, setIsLomographyHovered] = useState(false);
+  const [isLomographyVisible, setIsLomographyVisible] = useState(false); 
+
+  const TRANSITION_DURATION = 500;
+
+  const handleMouseEnter = () => {
+    setIsLomographyHovered(true);
+    setTimeout(() => {
+      setIsLomographyVisible(true);
+    }, 50);
+  };
+
+  const handleMouseLeave = () => {
+    setIsLomographyVisible(false);
+    setTimeout(() => {
+      setIsLomographyHovered(false);
+    }, TRANSITION_DURATION);
+  };
+  
+  const handleTouchStart = () => handleMouseEnter();
+  const handleTouchEnd = () => handleMouseLeave();
+
 
   return (
     <>
@@ -131,8 +152,16 @@ export default function About() {
             ))}
           </div>
 
-          {/* CARD 3 */}
-          <div className="card group text-text dark:text-text hover:text-text dark:hover:text-text-inverse transition-colors duration-300 p-6 rounded-lg border border-neutral-700">
+          {/* CARD 3 - ARREGLO FINAL */}
+          <div 
+            // La tarjeta completa es ahora el contenedor relativo y el área de hover
+            ref={lomographyRef} 
+            className="card group text-text dark:text-text hover:text-text dark:hover:text-text-inverse transition-colors duration-300 p-6 rounded-lg border border-neutral-700 relative" // CLAVE: Añadir 'relative' aquí
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            onTouchStart={handleTouchStart} 
+            onTouchEnd={handleTouchEnd}
+          >
             <div>
               <Icon
                 icon="material-symbols:menu-book-outline-rounded"
@@ -156,31 +185,42 @@ export default function About() {
             </p>
 
             <br />
-
-            <div
-              ref={lomographyRef}
-              className="relative inline-block"
-              onMouseEnter={() => setIsLomographyHovered(true)}
-              onMouseLeave={() => setIsLomographyHovered(false)}
+            
+            {/* El WorkLink ya no necesita ser un contenedor relativo, es solo un elemento del flujo normal. */}
+            <WorkLink 
+              className="font-heading block text-center mb-2 z-50 relative transition-colors duration-300 dark:group-hover:text-text-inverse"
+              href="https://www.lomography.com/homes/charili/photos?order=trending"
             >
-              <WorkLink href="https://www.lomography.com/homes/charili/photos?order=trending">Lomography</WorkLink>
-              
-              {isLomographyHovered && (
-                <>
-                  <img className="absolute top-10 -right-10 z-10 shadow-md"
-                   src={Lomo1}
-                   />
-                    <img className="absolute top-8 -left-10 z-10 shadow-md"
-                   src={Lomo2}
-                   />
-                    <img className="absolute -top-28 -rignt-10 z-10 shadow-md"
-                   src={Lomo3}
-                   />
-              
-                </>
-              )}
-            </div>
+              Lomography
+            </WorkLink>
 
+            {isLomographyHovered && (
+              <div 
+              className={`absolute inset-0 pointer-events-none transition-opacity duration-500 ease-in-out ${isLomographyVisible ? 'opacity-100' : 'opacity-0'}`}
+            >
+              {/* Lomo3: ARRIBA de la tarjeta, centrado horizontalmente. */}
+              <img 
+                 className="absolute top-52 left-1/2 -translate-x-1/2 -translate-y-full z-50 shadow-md w-20 sm:w-28 md:w-36 lg:w-40 rounded-lg"
+                 alt='Portada de Lomography - Foto del día'
+                 src={Lomo3}
+               />
+
+              {/* Lomo1: IZQUIERDA de la tarjeta, centrado verticalmente. */}
+              <img 
+                 className="absolute top-64 left-0 -translate-x-full -translate-y-1/2 z-50 shadow-md w-20 sm:w-28 md:w-36 lg:w-40 rounded-lg"
+                 alt='Portada de Lomography - Foto de la semana'
+                 src={Lomo1}
+               />
+              
+              {/* Lomo2: ABAJO de la tarjeta, centrado horizontalmente. (Ajustado) */}
+              <img 
+                 className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-full z530 shadow-md w-20 sm:w-28 md:w-36 lg:w-40 rounded-lg"
+                 alt='Portada de Lomography - Foto de la semana'
+                 src={Lomo2}
+               />
+            </div>
+            )}
+            
             <p className="text-sm text-center transition-colors duration-300 dark:group-hover:text-text-inverse">
               Seleccionada foto del día y foto del mes en Lomography.
             </p>
@@ -189,7 +229,7 @@ export default function About() {
       </section>
 
       {/* Sección Skills */}
-      <section className="max-w-5xl mx-auto flex flex-col items-center">
+      <section className="max-w-5xl mx-auto flex flex-col items-center z-40">
         <h1 className="text-xl">Mis skills:</h1>
 
         <div className="grid grid-cols-3 gap-6 m-10">
