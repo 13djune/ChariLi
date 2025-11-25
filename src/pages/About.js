@@ -12,23 +12,18 @@ import Lomo3 from '../assets/img/lomography/Lomo3.png';
 export default function About() {
   const containerRef = useRef(null);
   const lomographyRef = useRef(null);
+  // Mantener solo un estado para el hover
   const [isLomographyHovered, setIsLomographyHovered] = useState(false);
-  const [isLomographyVisible, setIsLomographyVisible] = useState(false); 
-
-  const TRANSITION_DURATION = 500;
+  // Se elimina isLomographyVisible y TRANSITION_DURATION
 
   const handleMouseEnter = () => {
+    // Solo se cambia el estado a true. La transición la hace CSS.
     setIsLomographyHovered(true);
-    setTimeout(() => {
-      setIsLomographyVisible(true);
-    }, 50);
   };
 
   const handleMouseLeave = () => {
-    setIsLomographyVisible(false);
-    setTimeout(() => {
-      setIsLomographyHovered(false);
-    }, TRANSITION_DURATION);
+    // Solo se cambia el estado a false. La transición la hace CSS.
+    setIsLomographyHovered(false);
   };
   
   const handleTouchStart = () => handleMouseEnter();
@@ -154,9 +149,8 @@ export default function About() {
 
           {/* CARD 3 - ARREGLO FINAL */}
           <div 
-            // La tarjeta completa es ahora el contenedor relativo y el área de hover
             ref={lomographyRef} 
-            className="card group text-text dark:text-text hover:text-text dark:hover:text-text-inverse transition-colors duration-300 p-6 rounded-lg border border-neutral-700 relative" // CLAVE: Añadir 'relative' aquí
+            className="card group text-text dark:text-text hover:text-text dark:hover:text-text-inverse transition-colors duration-300 p-6 rounded-lg border border-neutral-700 relative" 
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             onTouchStart={handleTouchStart} 
@@ -186,7 +180,6 @@ export default function About() {
 
             <br />
             
-            {/* El WorkLink ya no necesita ser un contenedor relativo, es solo un elemento del flujo normal. */}
             <WorkLink 
               className="font-heading block text-center mb-2 z-50 relative transition-colors duration-300 dark:group-hover:text-text-inverse"
               href="https://www.lomography.com/homes/charili/photos?order=trending"
@@ -194,9 +187,15 @@ export default function About() {
               Lomography
             </WorkLink>
 
-            {isLomographyHovered && (
-              <div 
-              className={`absolute inset-0 pointer-events-none transition-opacity duration-500 ease-in-out ${isLomographyVisible ? 'opacity-100' : 'opacity-0'}`}
+            {/* Este div **SIEMPRE** se renderiza para que las imágenes se carguen de inicio. */}
+            {/* Las clases controlan su visibilidad y si bloquea el cursor. */}
+            <div 
+              className={`
+                absolute inset-0 
+                transition-opacity duration-300 ease-in-out 
+                ${isLomographyHovered ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}
+              `}
+              style={{zIndex: 100}}
             >
               {/* Lomo3: ARRIBA de la tarjeta, centrado horizontalmente. */}
               <img 
@@ -212,14 +211,13 @@ export default function About() {
                  src={Lomo1}
                />
               
-              {/* Lomo2: ABAJO de la tarjeta, centrado horizontalmente. (Ajustado) */}
+              {/* Lomo2: ABAJO de la tarjeta, centrado horizontalmente. */}
               <img 
-                 className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-full z530 shadow-md w-20 sm:w-28 md:w-36 lg:w-40 rounded-lg"
+                 className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-full z-50 shadow-md w-20 sm:w-28 md:w-36 lg:w-40 rounded-lg"
                  alt='Portada de Lomography - Foto de la semana'
                  src={Lomo2}
                />
             </div>
-            )}
             
             <p className="text-sm text-center transition-colors duration-300 dark:group-hover:text-text-inverse">
               Seleccionada foto del día y foto del mes en Lomography.
