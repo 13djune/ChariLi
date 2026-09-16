@@ -88,7 +88,15 @@ export default function MrPotato({ image, container }) {
         }
   
         if (hit) {
-          animateBounce(newX, newY, vx, vy);
+          // If velocity is too low, just stop the tween to prevent infinite micro-bounces
+          if (Math.abs(vx) < 1 && Math.abs(vy) < 1) {
+             gsap.killTweensOf(ball);
+             return;
+          }
+          // Prevent synchronous infinite recursion by scheduling the next bounce
+          requestAnimationFrame(() => {
+             animateBounce(newX, newY, vx, vy);
+          });
         }
       }
   

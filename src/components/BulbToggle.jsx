@@ -105,8 +105,8 @@ export default function BulbThemeToggle() {
   }, [isOn]);
 
   return (
-    <div className="bulb-toggle h-[3rem]">
-      <svg className="toggle-scene " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 197.451 481.081" preserveAspectRatio="xMinYMin">
+    <div className="bulb-toggle h-[3rem] fixed top-0 right-4 sm:right-8 z-40 pointer-events-none">
+      <svg className="toggle-scene pointer-events-auto w-12 sm:w-16 h-auto drop-shadow-md" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 197.451 481.081" preserveAspectRatio="xMinYMin">
         <defs>
           {['a', 'b', 'c', 'd', 'e'].map(id => (
             <marker key={id} id={id} orient="auto" overflow="visible" refX="0" refY="0">

@@ -1,13 +1,11 @@
 import { Icon } from '@iconify/react';
 import FancyButton from '../components/FancyButton';
 import MrPotato from '../components/MrPotato';
-import xari from '../assets/img/xari.webp';
+import { ASSETS } from '../constants/assets';
+import { motion, AnimatePresence } from 'framer-motion';
 import React, { useRef, useState } from 'react';
 import WorkLink from '../components/WorkLink';
 import SkillCircle from '../components/SkillCircle';
-import Lomo1 from '../assets/img/lomography/Lomo1.png';
-import Lomo2 from '../assets/img/lomography/Lomo2.png';
-import Lomo3 from '../assets/img/lomography/Lomo3.png';
 
 export default function About() {
   const containerRef = useRef(null);
@@ -33,54 +31,106 @@ export default function About() {
   return (
     <>
 
-      <section className="max-w-4xl mx-auto">
-        <div className="flex flex-row items-center justify-between mt-16">
-          <div ref={containerRef} className="relative w-[200%] mx-auto">
-            <img src={xari} alt="Fondo" className="h-full w-full block" />
+      <motion.section 
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.8 }}
+        className="max-w-4xl mx-auto"
+      >
+        <div className="flex flex-col md:flex-row items-center justify-between mt-16">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            ref={containerRef} 
+            className="relative w-[200%] mx-auto"
+          >
+            <img loading="lazy" decoding="async" src={ASSETS.xari} alt="Fondo" className="h-full w-full block" />
 
             <MrPotato
               className="z-10"
-              image="https://assets.codepen.io/16327/circle.png"
+              image={ASSETS.Sevenup}
               container={containerRef}
             />
             <MrPotato
               className="z-10"
-              image="https://placekitten.com/125/125"
+              image={ASSETS.Queso}
               container={containerRef}
             />
-          </div>
+          </motion.div>
 
-          <div className="pl-4">
-            <h1 className="text-3xl font-bold mb-4 text-text">¡Hola! Soy Chari Li,</h1>
-            <p className="text-text">
-              nací en Málaga y crecí en Torre del Mar, un pueblo en la costa de la Axarquía.
-            </p>
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: { 
+                opacity: 1, 
+                transition: { staggerChildren: 0.2, delayChildren: 0.4 }
+              }
+            }}
+            className="pl-4 font-body leading-relaxed"
+          >
+            <motion.h1 
+              variants={{ hidden: { opacity: 0, x: 20 }, visible: { opacity: 1, x: 0, transition: { duration: 0.6 } } }}
+              className="text-3xl font-heading font-bold mb-4 text-text"
+            >¡Hola! Soy Chari Li,</motion.h1>
+            <motion.p 
+              variants={{ hidden: { opacity: 0, x: 20 }, visible: { opacity: 1, x: 0, transition: { duration: 0.6 } } }}
+              className="text-text"
+            >
+              nací en <strong>Málaga</strong> y crecí en <strong>Torre del Mar</strong>, un pueblo en la costa de la Axarquía.
+            </motion.p>
             <br />
-            <p className="text-text">
-              Durante los años en los que estudié Comunicación Audiovisual en Madrid, no he parado
+            <motion.p 
+              variants={{ hidden: { opacity: 0, x: 20 }, visible: { opacity: 1, x: 0, transition: { duration: 0.6 } } }}
+              className="text-text"
+            >
+              Durante los años en los que estudié <strong>Comunicación Audiovisual</strong> en <strong>Madrid</strong>, no he parado
               de desarrollarme profesionalmente en diferentes campos.
-            </p>
+            </motion.p>
             <br />
-            <p className="text-text">
-              Nativa en redes sociales, desde muy joven he estado en contacto con el mundo del
-              internet, llegando a gestionar junto a mi equipo cuentas y comunidades de más de
-              70.000 seguidores.
-            </p>
+            <motion.p 
+              variants={{ hidden: { opacity: 0, x: 20 }, visible: { opacity: 1, x: 0, transition: { duration: 0.6 } } }}
+              className="text-text"
+            >
+              <strong>Nativa en redes sociales</strong>, desde muy joven he estado en contacto con el mundo del
+              internet, llegando a gestionar junto a mi equipo cuentas y comunidades de <strong>más de
+              70.000 seguidores</strong>.
+            </motion.p>
             <br />
-            <p className="text-text">
+            <motion.p 
+              variants={{ hidden: { opacity: 0, x: 20 }, visible: { opacity: 1, x: 0, transition: { duration: 0.6 } } }}
+              className="text-text"
+            >
               Estoy dispuesta a trabajar y desempeñar distintos cargos para ganar experiencia en los
-              mundos que me apasionan. Nunca se termina de aprender sobre cine, televisión, radio,
-              espectáculos…
-            </p>
-          </div>
+              mundos que me apasionan. Nunca se termina de aprender sobre <strong>cine, televisión, radio,
+              espectáculos…</strong>
+            </motion.p>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Sección de trabajos */}
-      <section className="max-w-5xl mx-auto my-[9rem]">
-        <div className="flex flex-row justify-between gap-6">
+      <motion.section 
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ duration: 0.8 }}
+        className="max-w-5xl mx-auto my-12 md:my-[9rem]"
+      >
+        <div className="flex flex-col md:flex-row justify-between gap-6">
           {/* CARD 1 */}
-<div className="card group text-text dark:text-text hover:text-text dark:hover:text-text-inverse transition-colors duration-300 p-6 rounded-lg border border-neutral-700">
+<motion.div 
+  initial={{ opacity: 0, y: 30 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true, amount: 0.2 }}
+  transition={{ duration: 0.6, delay: 0.2 }}
+  className="card group text-text dark:text-text hover:text-text dark:hover:text-text-inverse transition-colors duration-300 p-6 rounded-lg border border-neutral-700"
+>
   <div>
     <Icon
       icon="material-symbols:trophy-outline-rounded"
@@ -91,35 +141,39 @@ export default function About() {
   </div>
 
   <WorkLink
-    className="cursor-pointer font-heading text-text dark:group-hover:text-text-inverse transition-colors duration-300"
+    className="font-heading text-text dark:group-hover:text-text-inverse transition-colors duration-300"
     href="https://www.youtube.com/watch?v=KA-7mkDLY28"
   >
-    "Gazpachuelo"
+    'Gazpachuelo'
   </WorkLink>
 
-  <p className="text-sm text-center transition-colors duration-300 dark:group-hover:text-text-inverse">
-    Categoría Mejor Corto en el <a rel="noreferrer" target="_blank" className='font-bold' href='https://festivaladn.com/#:~:text=Gazpachuelo%20de%20Chari%20Li%20Rinc%C3%B3n%20Rivas%20(Mejor%20Cortometraje)'>Festival ADN 2023.</a> Presentado y participando en el Festival
-    Internacional de Cine en Guadalajara (México).
+  <p className="text-sm text-center break-words transition-colors duration-300 dark:group-hover:text-text-inverse">
+    Categoría Mejor Corto en el <a href="https://festivaladn.com" target="_blank" rel="noopener noreferrer" className="font-bold text-primary underline">Festival ADN 2023</a>. Presentado y participando en el Festival Internacional de Cine en Guadalajara (México).
   </p>
 
   <br />
 
   <WorkLink
-    className="cursor-pointer font-heading text-text dark:group-hover:text-text-inverse transition-colors duration-300"
+    className="font-heading text-text dark:group-hover:text-text-inverse transition-colors duration-300"
     href="https://www.instagram.com/festivaladn/p/DITnXBNI4z6/?hl=en"
   >
     "OutS1d3"
   </WorkLink>
 
-  <p className="text-sm text-center transition-colors duration-300 dark:group-hover:text-text-inverse">
-    Coordinación en departamentos de dirección y producción, ganador a mejor dirección de arte en el
-    Festival ADN 2025.
+  <p className="text-sm text-center break-words transition-colors duration-300 dark:group-hover:text-text-inverse">
+    Coordinación en departamentos de dirección y producción, ganador a mejor dirección de arte en el <a href="https://festivaladn.com/" target="_blank" rel="noopener noreferrer" className="font-bold text-primary underline">Festival ADN 2025</a>.
   </p>
-</div>
+</motion.div>
 
 
           {/* CARD 2 */}
-          <div className="card group text-text dark:text-text hover:text-text dark:hover:text-text-inverse transition-colors duration-300 p-6 rounded-lg border border-neutral-700">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="card group text-text dark:text-text hover:text-text dark:hover:text-text-inverse transition-colors duration-300 p-6 rounded-lg border border-neutral-700"
+          >
             <div>
               <Icon
                 icon="material-symbols:explosion-outline-rounded"
@@ -140,21 +194,21 @@ export default function About() {
             ].map((skill) => (
               <h2
                 key={skill}
-                className="cursor-pointer pill transition-colors duration-300 dark:group-hover:text-text-inverse"
+                className="pill transition-colors duration-300 dark:group-hover:text-text-inverse"
               >
                 {skill}
               </h2>
             ))}
-          </div>
+          </motion.div>
 
           {/* CARD 3 - ARREGLO FINAL */}
-          <div 
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
             ref={lomographyRef} 
-            className="card group text-text dark:text-text hover:text-text dark:hover:text-text-inverse transition-colors duration-300 p-6 rounded-lg border border-neutral-700 relative" 
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            onTouchStart={handleTouchStart} 
-            onTouchEnd={handleTouchEnd}
+            className="card group text-text dark:text-text hover:text-text dark:hover:text-text-inverse transition-colors duration-300 p-6 rounded-lg border border-neutral-700 relative flex flex-col items-center text-center justify-center" 
           >
             <div>
               <Icon
@@ -165,116 +219,183 @@ export default function About() {
               />
             </div>
 
-            <WorkLink
-              className="cursor-pointer font-heading text-text dark:group-hover:text-text-inverse transition-colors duration-300"
-              href="https://cadenaser.com/nacional/2023/06/21/dos-cortometrajes-universitarios-espanoles-en-el-programa-oficial-del-festival-internacional-de-cine-de-guadalajara-cadena-ser/"
-            >
-              Cadena Ser
-            </WorkLink>
+            <div className="relative z-50 flex flex-col items-center justify-center w-full mt-4">
+              <WorkLink
+                className="font-heading text-text dark:group-hover:text-text-inverse transition-colors duration-300"
+                href="https://cadenaser.com/nacional/2023/06/21/dos-cortometrajes-universitarios-espanoles-en-el-programa-oficial-del-festival-internacional-de-cine-de-guadalajara-cadena-ser/"
+              >
+                Cadena Ser
+              </WorkLink>
 
-            <p className="text-sm text-center font-bodyItalic transition-colors duration-300 dark:group-hover:text-text-inverse">
-              "Presentar en México un proyecto que refleja mi tierra, Andalucía, y exportar
-              Gazpachuelo a un festival de prestigio como el FICG, es todo un sueño para mí y mi
-              equipo." -Chari Li
-            </p>
+              <p className="text-sm text-center font-bodyItalic transition-colors duration-300 dark:group-hover:text-text-inverse">
+                "Presentar en México un proyecto que refleja mi tierra, Andalucía, y exportar
+                Gazpachuelo a un festival de prestigio como el FICG, es todo un sueño para mí y mi
+                equipo." -Chari Li
+              </p>
+            </div>
 
             <br />
             
-            <WorkLink 
-              className="font-heading block text-center mb-2 z-50 relative transition-colors duration-300 dark:group-hover:text-text-inverse"
-              href="https://www.lomography.com/homes/charili/photos?order=trending"
+            <div
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+              onTouchStart={handleTouchStart} 
+              onTouchEnd={handleTouchEnd}
+              className="relative z-10 flex flex-col items-center justify-center w-full h-full py-6 mt-2"
             >
-              Lomography
-            </WorkLink>
+              <WorkLink 
+                className="font-heading block text-center mb-2 relative transition-colors duration-300 dark:group-hover:text-text-inverse"
+                href="https://www.lomography.com/homes/charili/photos?order=trending"
+              >
+                Lomography
+              </WorkLink>
 
-            {/* Este div **SIEMPRE** se renderiza para que las imágenes se carguen de inicio. */}
-            {/* Las clases controlan su visibilidad y si bloquea el cursor. */}
-            <div 
-              className={`
-                absolute inset-0 
-                transition-opacity duration-300 ease-in-out 
-                ${isLomographyHovered ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}
-              `}
-              style={{zIndex: 100}}
-            >
-              {/* Lomo3: ARRIBA de la tarjeta, centrado horizontalmente. */}
-              <img 
-                 className="absolute top-52 left-1/2 -translate-x-1/2 -translate-y-full z-50 shadow-md w-20 sm:w-28 md:w-36 lg:w-40 rounded-lg"
-                 alt='Portada de Lomography - Foto del día'
-                 src={Lomo3}
-               />
-
-              {/* Lomo1: IZQUIERDA de la tarjeta, centrado verticalmente. */}
-              <img 
-                 className="absolute top-64 left-0 -translate-x-full -translate-y-1/2 z-50 shadow-md w-20 sm:w-28 md:w-36 lg:w-40 rounded-lg"
-                 alt='Portada de Lomography - Foto de la semana'
-                 src={Lomo1}
-               />
-              
-              {/* Lomo2: ABAJO de la tarjeta, centrado horizontalmente. */}
-              <img 
-                 className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-full z-50 shadow-md w-20 sm:w-28 md:w-36 lg:w-40 rounded-lg"
-                 alt='Portada de Lomography - Foto de la semana'
-                 src={Lomo2}
-               />
+              <p className="text-sm text-center break-words transition-colors duration-300 dark:group-hover:text-text-inverse relative">
+                Seleccionada foto del día y foto del mes en Lomography.
+              </p>
             </div>
-            
-            <p className="text-sm text-center transition-colors duration-300 dark:group-hover:text-text-inverse">
-              Seleccionada foto del día y foto del mes en Lomography.
-            </p>
-          </div>
+
+                        
+            <div className="absolute inset-0 flex justify-center items-center pointer-events-none z-50">
+              <motion.img loading="lazy" decoding="async"
+                 className="pointer-events-none absolute shadow-2xl w-24 sm:w-32 md:w-40 lg:w-48 rounded-xl"
+                 alt="Portada de Lomography - Foto de la semana"
+                 src={ASSETS.Lomo1}
+                 initial={false}
+                 animate={{ 
+                   opacity: isLomographyHovered ? 1 : 0,
+                   x: isLomographyHovered ? "-105%" : 0,
+                   y: isLomographyHovered ? -60 : 0,
+                   rotate: isLomographyHovered ? -5 : 0, 
+                   scale: isLomographyHovered ? 1 : 0.75 
+                 }}
+                 transition={{ type: "spring", stiffness: 300, damping: 25 }}
+              />
+              <motion.img loading="lazy" decoding="async"
+                 className="pointer-events-none absolute shadow-2xl w-24 sm:w-32 md:w-40 lg:w-48 rounded-xl"
+                 alt="Portada de Lomography - Foto del día"
+                 src={ASSETS.Lomo3}
+                 initial={false}
+                 animate={{ 
+                   opacity: isLomographyHovered ? 1 : 0,
+                   x: isLomographyHovered ? 0 : 0,
+                   y: isLomographyHovered ? -60 : 0,
+                   rotate: isLomographyHovered ? 0 : 0, 
+                   scale: isLomographyHovered ? 1.1 : 0.75 
+                 }}
+                 transition={{ type: "spring", stiffness: 300, damping: 25, delay: isLomographyHovered ? 0.05 : 0 }}
+              />
+              <motion.img loading="lazy" decoding="async"
+                 className="pointer-events-none absolute shadow-2xl w-24 sm:w-32 md:w-40 lg:w-48 rounded-xl"
+                 alt="Portada de Lomography - Foto de la semana"
+                 src={ASSETS.Lomo2}
+                 initial={false}
+                 animate={{ 
+                   opacity: isLomographyHovered ? 1 : 0,
+                   x: isLomographyHovered ? "105%" : 0,
+                   y: isLomographyHovered ? -60 : 0,
+                   rotate: isLomographyHovered ? 5 : 0, 
+                   scale: isLomographyHovered ? 1 : 0.75 
+                 }}
+                 transition={{ type: "spring", stiffness: 300, damping: 25, delay: isLomographyHovered ? 0.1 : 0 }}
+              />
+            </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Sección Skills */}
-      <section className="max-w-5xl mx-auto flex flex-col items-center z-40">
-        <h1 className="text-xl">Mis skills:</h1>
+      <motion.section 
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.8 }}
+        className="max-w-5xl mx-auto flex flex-col items-center z-40"
+      >
+        <motion.h1 
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.8 }}
+          transition={{ duration: 0.6 }}
+          className="text-xl"
+        >Mis skills:</motion.h1>
 
-        <div className="grid grid-cols-3 gap-6 m-10">
-          <SkillCircle
-            label="Dirección"
-            icon="material-symbols:movie-outline-rounded"
-            percent={80}
-          />
-          <SkillCircle
-            label="Fotografía analógica + digital"
-            icon="material-symbols:camera-roll-outline-rounded"
-            percent={90}
-          />
-          <SkillCircle
-            label="Creatividad"
-            icon="material-symbols:lightbulb-2-outline-rounded"
-            percent={100}
-          />
-          <SkillCircle
-            label="Edición foto + vídeo"
-            icon="material-symbols:edit-outline-rounded"
-            percent={70}
-          />
-          <SkillCircle
-            label="Social media"
-            icon="material-symbols:animated-images-outline-rounded"
-            percent={95}
-          />
-          <SkillCircle
-            label="Publicidad"
-            icon="material-symbols:connect-without-contact-outline-rounded"
-            percent={74}
-          />
-        </div>
-
-        <FancyButton
-          label="Descargar CV"
-          icon={
-            <Icon
-              icon="material-symbols:download-2-outline-rounded"
-              width="20"
-              height="20"
-              className="text-current"
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={{
+            hidden: { opacity: 0 },
+            visible: { 
+              opacity: 1, 
+              transition: { staggerChildren: 0.1, delayChildren: 0.2 }
+            }
+          }}
+          className="grid grid-cols-3 gap-6 m-10"
+        >
+          <motion.div variants={{ hidden: { opacity: 0, scale: 0.8 }, visible: { opacity: 1, scale: 1, transition: { duration: 0.4 } } }}>
+            <SkillCircle
+              label="Dirección"
+              icon="material-symbols:movie-outline-rounded"
+              percent={80}
             />
-          }
-        />
-      </section>
+          </motion.div>
+          <motion.div variants={{ hidden: { opacity: 0, scale: 0.8 }, visible: { opacity: 1, scale: 1, transition: { duration: 0.4 } } }}>
+            <SkillCircle
+              label="Fotografía analógica + digital"
+              icon="material-symbols:camera-roll-outline-rounded"
+              percent={90}
+            />
+          </motion.div>
+          <motion.div variants={{ hidden: { opacity: 0, scale: 0.8 }, visible: { opacity: 1, scale: 1, transition: { duration: 0.4 } } }}>
+            <SkillCircle
+              label="Creatividad"
+              icon="material-symbols:lightbulb-2-outline-rounded"
+              percent={100}
+            />
+          </motion.div>
+          <motion.div variants={{ hidden: { opacity: 0, scale: 0.8 }, visible: { opacity: 1, scale: 1, transition: { duration: 0.4 } } }}>
+            <SkillCircle
+              label="Edición foto + vídeo"
+              icon="material-symbols:edit-outline-rounded"
+              percent={70}
+            />
+          </motion.div>
+          <motion.div variants={{ hidden: { opacity: 0, scale: 0.8 }, visible: { opacity: 1, scale: 1, transition: { duration: 0.4 } } }}>
+            <SkillCircle
+              label="Social media"
+              icon="material-symbols:animated-images-outline-rounded"
+              percent={95}
+            />
+          </motion.div>
+          <motion.div variants={{ hidden: { opacity: 0, scale: 0.8 }, visible: { opacity: 1, scale: 1, transition: { duration: 0.4 } } }}>
+            <SkillCircle
+              label="Publicidad"
+              icon="material-symbols:connect-without-contact-outline-rounded"
+              percent={74}
+            />
+          </motion.div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.8 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+        >
+          <FancyButton
+            label="Descargar CV"
+            icon={
+              <Icon
+                icon="material-symbols:download-2-outline-rounded"
+                width="20"
+                height="20"
+                className="text-current"
+              />
+            }
+          />
+        </motion.div>
+      </motion.section>
     </>
   );
 }

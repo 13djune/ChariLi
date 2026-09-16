@@ -119,7 +119,7 @@ export default function ProjectSlider({ project, onImageClick }) {
           />
         </div>
 
-        <div className="marquee-scroll-wrapper" ref={scrollRef}>
+        <div className="marquee-scroll-wrapper overflow-y-hidden py-6" ref={scrollRef}>
           <div className="marquee-scroll-content">
             {[...project.media, ...project.media].map((media, i) => (
               <div key={i} className="marquee-item">
@@ -133,23 +133,28 @@ export default function ProjectSlider({ project, onImageClick }) {
                           .findIndex(item => item.src === media.src)
                       )
                     }
-                    className="p-0 m-0 border-0 bg-transparent cursor-pointer focus:outline-none"
+                    className="p-0 m-0 border-0 bg-transparent cursor-pointer relative block group rounded-xl overflow-hidden shadow-lg hover:shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-95 transition-all duration-500 ease-out"
                   >
-                    <img
-                      src={media.src}
-                      alt={`${project.title} ${i + 1}`}
-                      className="h-[320px] w-auto rounded-xl transition-transform duration-300 hover:scale-105"
-                      draggable={false}
-                    />
+                    <div className="relative">
+                      <img
+                        src={media.src}
+                        alt={`${project.title} ${i + 1}`}
+                        className="w-[280px] sm:w-[320px] md:w-[450px] h-[320px] md:h-[400px] object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                        draggable={false}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    </div>
                   </button>
                 ) : (
-                  <video
-                    src={media.src}
-                    muted
-                    autoPlay
-                    loop
-                    className="h-[320px] w-auto rounded-xl pointer-events-none"
-                  />
+                  <div className="overflow-hidden rounded-xl bg-secondary">
+                    <video
+                      src={media.src}
+                      muted
+                      autoPlay
+                      loop
+                      className="w-[280px] sm:w-[320px] md:w-[450px] h-[320px] md:h-[400px] object-cover pointer-events-none"
+                    />
+                  </div>
                 )}
               </div>
             ))}
@@ -157,54 +162,87 @@ export default function ProjectSlider({ project, onImageClick }) {
         </div>
       </div>
 
-      <Modal
+                        <Modal
         isOpen={!!modalData}
         onRequestClose={closeModal}
         shouldCloseOnOverlayClick={true}
-        className="border-l-4 border-l-primary fixed top-0 right-0 w-full sm:w-[500px] h-full bg-background text-text p-10 overflow-y-auto"
-        overlayClassName="fixed inset-0 bg-black/60 backdrop-blur-sm z-[9998]"
+        className="relative mx-auto mt-10 mb-10 max-w-5xl w-[95%] bg-background text-text outline-none rounded-2xl shadow-2xl z-[9999] flex flex-col md:flex-row overflow-hidden border border-neutral-700"
+        overlayClassName="fixed inset-0 bg-black/90 backdrop-blur-sm flex justify-center items-start overflow-y-auto z-[9998]"
       >
-        <div className="flex justify-between items-start mb-4">
-          <h2 className="text-3xl font-heading uppercase tracking-wider">
-            {modalData?.title}{' '}
-            <span className="text-xs font-heading">({modalData?.year})</span>
-          </h2>
-          <button
-            onClick={closeModal}
-            className="text-3xl font-bodyBold cursor-pointer hover:text-accent"
-          >
-            ×
-          </button>
+        <button
+          onClick={closeModal}
+          className="absolute top-4 right-4 text-4xl font-bodyBold hover:text-primary z-[9999] w-12 h-12 flex items-center justify-center rounded-full bg-background border border-neutral-700 pointer-events-auto shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-95 transition-all duration-300 cursor-pointer"
+          aria-label="Cerrar"
+        >
+          ×
+        </button>
+
+        {/* Galería (izquierda) */}
+        <div className="w-full md:w-1/2 p-6 overflow-y-auto h-auto md:max-h-[85vh] border-b md:border-b-0 md:border-r border-neutral-700 custom-scrollbar bg-black/10">
+          <div className="flex flex-col gap-6">
+            {modalData?.media?.map((media, i) => (
+              <div key={i} className="shadow-lg rounded-xl overflow-hidden">
+                {media.type === 'image' ? (
+                  <img
+                    src={media.src}
+                    alt={`${modalData.title} ${i + 1}`}
+                    className="w-full h-auto object-cover"
+                    draggable={false}
+                  />
+                ) : (
+                  <video
+                    src={media.src}
+                    muted
+                    autoPlay
+                    loop
+                    className="w-full h-auto object-cover"
+                  />
+                )}
+              </div>
+            ))}
+          </div>
         </div>
 
-        <div className="mb-4 space-y-4 text-base font-body leading-relaxed">
-          {Array.isArray(modalData?.description) ? (
-            modalData.description.map((paragraph, i) => (
-              <p key={i}>{paragraph}</p>
-            ))
-          ) : (
-            <p>{modalData?.description}</p>
+        {/* Info (derecha) */}
+        <div className="w-full md:w-1/2 p-8 sm:p-12 overflow-y-auto h-auto md:max-h-[85vh] custom-scrollbar flex flex-col bg-background">
+          <h2 className="text-3xl font-heading uppercase tracking-wider mb-2">
+            {modalData?.title}
+          </h2>
+          <span className="text-sm font-heading text-neutral-500 mb-6 block">({modalData?.year})</span>
+
+          <div className="mb-6 space-y-4 text-base font-body leading-relaxed text-text">
+            {Array.isArray(modalData?.description) ? (
+              modalData.description.map((paragraph, i) => (
+                <p key={i} dangerouslySetInnerHTML={{ __html: paragraph }} />
+              ))
+            ) : (
+              <p dangerouslySetInnerHTML={{ __html: modalData?.description }} />
+            )}
+          </div>
+
+          <ul className="list-disc list-inside space-y-1 mb-8 text-text font-body">
+            {modalData?.disciplines.map((d, i) => (
+              <li key={i} className="text-sm mx-2 inline-block mb-2 font-bold bg-primary text-black-500 px-3 py-1 rounded-full">{d}</li>
+            ))}
+          </ul>
+
+          {modalData?.link && (
+            <div className="mt-auto pt-4 border-t border-neutral-700">
+              <FancyButton
+                label="Ver vídeo"
+                icon={
+                  <Icon
+                    icon="material-symbols:open-in-new-rounded"
+                    width="20"
+                    height="20"
+                    className="text-current"
+                  />
+                }
+                onClick={() => window.open(modalData.link, '_blank')}
+              />
+            </div>
           )}
         </div>
-
-        <ul className="list-disc list-inside space-y-1 mb-4">
-          {modalData?.disciplines.map((d, i) => (
-            <li key={i} className="text-sm pill mx-2">{d}</li>
-          ))}
-        </ul>
-
-        <FancyButton
-          label="Ver vídeo"
-          icon={
-            <Icon
-              icon="material-symbols:open-in-new-rounded"
-              width="20"
-              height="20"
-              className="text-current"
-            />
-          }
-          onClick={() => window.open(modalData.link, '_blank')}
-        />
       </Modal>
     </div>
   );

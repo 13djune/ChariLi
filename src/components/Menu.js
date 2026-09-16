@@ -1,22 +1,16 @@
 import { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import Gazpachuelo from '../assets/img/GAZPACHUELO/CARTEL_GANADOR.jpg';
-import DURA from '../assets/img/DURA.webp';
+import { ASSETS } from '../constants/assets';
 const projects = [
     {
       name: 'Gazpachuelo',
       link: '/projects#gazpachuelo',
-      image: Gazpachuelo,
+      image: ASSETS.Gazpachuelo,
     },
     {
       name: 'DURA',
       link: '/projects#dura',
-      image: DURA,
-    },
-    {
-      name: 'Proyecto 3',
-      link: '/projects#proyecto3',
-      image: '/images/proyecto3.png',
+      image: ASSETS.DURA,
     },
   ];
   

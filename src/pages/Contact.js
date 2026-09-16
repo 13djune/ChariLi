@@ -1,8 +1,4 @@
-import Lomography from '../assets/img/CONTACT/Lomography.png';
-import Email from '../assets/img/CONTACT/Email.png';
-import Linkedin from '../assets/img/CONTACT/Linkedin.png';
-import Queso from '../assets/img/CONTACT/Queso.png';
-import Sevenup from '../assets/img/CONTACT/Sevenup.png';
+import { ASSETS } from '../constants/assets';
 import { useState } from 'react';
 import WorkLink from '../components/WorkLink';
 
@@ -13,31 +9,31 @@ export default function Contacto() {
     {
       href: "https://www.instagram.com/sevenupfresquito/",
       label: "@sevenupfresquito",
-      image: Sevenup,
+      image: ASSETS.Sevenup,
       key: "1",
     },
     {
       href: "https://www.instagram.com/quesoenpolvo/",
       label: "@quesoenpolvo",
-      image: Queso,
+      image: ASSETS.Queso,
       key: "2",
     },
     {
       href: "https://www.lomography.com/homes/charili/photos?order=trending",
-      label: "Lomography",
-      image: Lomography,
+      label: 'Lomography',
+      image: ASSETS.Lomography,
       key: "3",
     },
     {
       href: "https://www.linkedin.com/in/charili/",
       label: "LinkedIn",
-      image: Linkedin,
+      image: ASSETS.Linkedin,
       key: "4",
     },
     {
       href: "mailto:charidelafreedom@gmail.com",
-      label: "Email",
-      image: Email,
+      label: 'Email',
+      image: ASSETS.Email,
       key: "5",
     },
   ];
@@ -51,14 +47,14 @@ export default function Contacto() {
         <img
           src={hoveredImage}
           alt="hover"
-          className="fixed inset-0 w-full h-full object-cover opacity-70 z-40 pointer-events-none mix-blend-multiply dark:mix-blend-screen transition-opacity duration-300"
+          className="fixed inset-0 w-full h-full object-cover opacity-70 z-40 pointer-events-none transition-opacity duration-300"
         />
       )}
 
       <div className="flex flex-col items-center relative z-10">
-        <p className='text-text text-sm text-center uppercase py-4 w-[30%]'>Si tienes una idea rondando la cabeza, no la dejes escapar. Escríbeme y veamos qué puede salir de ahí.</p>
-        <h1 className="text-text text-4xl font-heading text-center my-8 w-[40%] uppercase">¿Nos ponemos en contacto?</h1>
-        <div className="flex flex-row items-center my-8">
+        <p className='text-text text-sm text-center uppercase py-4 w-[90%] md:w-[90%] md:w-[60%] lg:w-[40%] lg:w-[30%]'>Si tienes una <strong>idea rondando la cabeza</strong>, no la dejes escapar. <strong>Escríbeme</strong> y veamos qué puede salir de ahí.</p>
+        <h1 className="text-text text-4xl font-heading text-center my-8 w-[90%] md:w-[60%] lg:w-[40%] uppercase">¿Nos ponemos en contacto?</h1>
+        <div className="flex flex-col md:flex-row items-center my-8 gap-4 md:gap-0">
           {links.map(({ href, label, key }) => (
             <div
               key={key}

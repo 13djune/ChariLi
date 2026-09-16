@@ -1,10 +1,11 @@
 import { useRef, useEffect } from 'react';
-import Hero_0 from '../assets/img/HERO.jpg';
-import cursorGraffiti from '../assets/img/Graffiti_cursor.png';
+
+import { ASSETS } from '../constants/assets';
 
 export default function PaintRevealHero() {
   const canvasRef = useRef(null);
   const containerRef = useRef(null);
+  const offscreenCanvasRef = useRef(null); // Para guardar el progreso del spray
 
   const getCurrentBackgroundColor = () => {
     const root = document.documentElement;
@@ -13,25 +14,80 @@ export default function PaintRevealHero() {
   };
 
   useEffect(() => {
+    const canvas = canvasRef.current;
+    
+    // Crear el offscreen canvas una sola vez
+    if (!offscreenCanvasRef.current) {
+        offscreenCanvasRef.current = document.createElement('canvas');
+    }
+
     const paintCanvasBackground = () => {
-      const canvas = canvasRef.current;
-      const ctx = canvas.getContext('2d');
+      const ctx = canvas.getContext('2d', { willReadFrequently: true });
+      const offscreenCanvas = offscreenCanvasRef.current;
+      const offscreenCtx = offscreenCanvas.getContext('2d');
+      
       const width = containerRef.current.offsetWidth;
       const height = containerRef.current.offsetHeight;
 
-      canvas.width = width;
-      canvas.height = height;
+      // Si el tamaño ha cambiado o es la primera vez, redibujamos la base
+      if (canvas.width !== width || canvas.height !== height) {
+        // Guardar la imagen actual (la máscara de spray) si ya existía
+        let existingData = null;
+        if (canvas.width > 0 && canvas.height > 0) {
+            existingData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        }
 
-      ctx.globalCompositeOperation = 'source-over';
-      ctx.fillStyle = getCurrentBackgroundColor();
-      ctx.fillRect(0, 0, width, height);
+        canvas.width = width;
+        canvas.height = height;
+        offscreenCanvas.width = width;
+        offscreenCanvas.height = height;
+
+        // Pintar el fondo base
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.fillStyle = getCurrentBackgroundColor();
+        ctx.fillRect(0, 0, width, height);
+        
+        offscreenCtx.fillStyle = getCurrentBackgroundColor();
+        offscreenCtx.fillRect(0, 0, width, height);
+
+        // Restaurar la máscara anterior (escalada de forma burda o centrada, pero evitamos perderlo todo)
+        if (existingData) {
+            // Esto restauraría la imagen cortada si se agranda, lo cual es aceptable para un efecto de spray
+            offscreenCtx.putImageData(existingData, 0, 0);
+            ctx.drawImage(offscreenCanvas, 0, 0);
+        }
+      } else {
+        // Solo cambiamos el color de fondo pero mantenemos los huecos (spray)
+        // Guardamos el estado actual (la máscara alfa)
+        const currentData = ctx.getImageData(0, 0, width, height);
+        
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.fillStyle = getCurrentBackgroundColor();
+        ctx.fillRect(0, 0, width, height);
+
+        // Restauramos el canal alfa del spray
+        const newData = ctx.getImageData(0, 0, width, height);
+        for (let i = 3; i < newData.data.length; i += 4) {
+            newData.data[i] = currentData.data[i];
+        }
+        ctx.putImageData(newData, 0, 0);
+      }
     };
 
     paintCanvasBackground();
 
     window.addEventListener('resize', paintCanvasBackground);
 
-    const observer = new MutationObserver(paintCanvasBackground);
+    const observer = new MutationObserver((mutations) => {
+        // Evitar bucles infinitos por clases de framer-motion u otras cosas, 
+        // comprobar si cambió 'dark' class en root
+        mutations.forEach(mutation => {
+            if (mutation.attributeName === 'class') {
+                paintCanvasBackground();
+            }
+        });
+    });
+    
     observer.observe(document.documentElement, {
       attributes: true,
       attributeFilter: ['class'],
@@ -45,7 +101,7 @@ export default function PaintRevealHero() {
 
   const handleMouseMove = (e) => {
     const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d', { willReadFrequently: true });
     const rect = canvas.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -69,11 +125,11 @@ export default function PaintRevealHero() {
       ref={containerRef}
       className="relative w-full h-screen overflow-hidden bg-background"
       onMouseMove={handleMouseMove}
-      style={{ cursor: `url(${cursorGraffiti}), auto` }}
+      style={{ cursor: `url(${ASSETS.Graffiti_cursor}) 10 10, auto` }}
       >
       {/* Imagen de fondo */}
       <img
-        src={Hero_0}
+        src={ASSETS.HERO}
         alt="Hero background"
         className="absolute top-0 left-0 w-full h-full object-cover"
       />
