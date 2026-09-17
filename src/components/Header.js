@@ -60,7 +60,7 @@ export default function Header() {
         </motion.nav>
 
         {/* Botón menú en móvil */}
-        <div className="sm:hidden flex items-center gap-3 mr-12">
+        <div className="sm:hidden flex items-center gap-3 ">
           <button onClick={toggleMobileMenu} className="text-3xl z-50 p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-full active:scale-95 transition-all cursor-pointer" aria-label="Abrir menú">
             <Icon icon={mobileMenuOpen ? 'material-symbols:cancel-outline-rounded' : 'material-symbols:menu-rounded'} />
           </button>
@@ -74,13 +74,13 @@ export default function Header() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 bg-background z-40 flex flex-col items-center justify-center gap-10 text-2xl text-center h-[100dvh]"
+              className="fixed inset-0 bg-background z-40 flex flex-col items-center justify-center gap-10 pt-20 text-2xl text-center h-[100dvh]"
             >
               <Link to="/about" onClick={toggleMobileMenu} className="interactive-link group-hover:-translate-y-1">Sobre mí</Link>
               <Link to="/projects" onClick={toggleMobileMenu} className="interactive-link group-hover:-translate-y-1">Proyectos</Link>
               <a href="#contacto" onClick={toggleMobileMenu} className="interactive-link group-hover:-translate-y-1">Contacto</a>
               
-              <div className="scale-[60%] border-2 border-black dark:border-white rounded-xl p-4">
+              <div className="scale-[50%] border-2 border-text rounded-xl p-2">
               <Switch />
               </div>
             </motion.div>

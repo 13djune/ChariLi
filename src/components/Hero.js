@@ -19,7 +19,7 @@ export default function Hero() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
                     whileHover={{ scale: 1.02 }}
-                    className="font-body text-text text-center text-2xl md:text-3xl mt-2 drop-shadow-md pointer-events-auto cursor-default bg-background/50 backdrop-blur-sm px-6 py-2 rounded-full border border-neutral-700/30"
+                    className="font-body text-text text-center text-lg md:text-3xl mt-2 drop-shadow-md pointer-events-auto cursor-default bg-background/50 backdrop-blur-sm px-6 py-2 rounded-full border border-neutral-700/30"
                 >
                     <strong>Creativa</strong> Audiovisual
                 </motion.p>

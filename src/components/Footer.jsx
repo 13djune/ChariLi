@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Icon } from '@iconify/react';
 import WorkLink from './WorkLink';
 
@@ -29,6 +29,22 @@ export default function Footer() {
     'material-symbols:folder-zip-outline-rounded', 'material-symbols:draw', 'material-symbols:trail-length-outline-rounded',
     'material-symbols:electrical-services-rounded', 'material-symbols:dirty-lens-outline-rounded', 'material-symbols:wb-incandescent-outline-rounded',
   ];
+
+  
+  // Auto cycle images on mobile
+  useEffect(() => {
+    const isMobile = window.innerWidth < 768;
+    if (!isMobile) return;
+
+    let index = 0;
+    const interval = setInterval(() => {
+      // Cycle through 1 to 5 based on links array length
+      index = (index % links.length) + 1;
+      setHoveredKey(index.toString());
+    }, 2500); // change image every 2.5 seconds
+
+    return () => clearInterval(interval);
+  }, []);
 
   const hoveredImage = links.find(link => link.key === hoveredKey)?.image;
 
@@ -65,12 +81,16 @@ export default function Footer() {
         <h2 className="text-text text-3xl sm:text-5xl font-heading text-center my-8 max-w-3xl uppercase tracking-wider">
           ¿Nos ponemos en contacto?
         </h2>
-        <div className="flex flex-wrap justify-center gap-6 sm:gap-10 my-8">
+        <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-5 sm:gap-10 my-8 w-full">
           {links.map(({ href, label, key }) => (
             <div
               key={key}
               onMouseEnter={() => setHoveredKey(key)}
               onMouseLeave={() => setHoveredKey(null)}
+              onTouchStart={() => setHoveredKey(key)}
+              onTouchEnd={() => setTimeout(() => setHoveredKey(null), 1000)}
+              onFocus={() => setHoveredKey(key)}
+              onBlur={() => setHoveredKey(null)}
               className="text-text text-lg sm:text-xl"
             >
               <WorkLink href={href}>{label}</WorkLink>

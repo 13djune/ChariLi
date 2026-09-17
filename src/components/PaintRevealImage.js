@@ -99,20 +99,28 @@ export default function PaintRevealHero() {
     };
   }, []);
 
-  const handleMouseMove = (e) => {
+    const handleMouseMove = (e) => {
     const canvas = canvasRef.current;
+    if (!canvas) return;
     const ctx = canvas.getContext('2d', { willReadFrequently: true });
     const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+    
+    // Extract client coordinates whether it's a mouse event or a touch event
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    
+    const x = clientX - rect.left;
+    const y = clientY - rect.top;
+    
+    drawSprayAt(ctx, x, y, 70);
+  };
 
-    const radius = 70;
+  const drawSprayAt = (ctx, x, y, radius = 70) => {
     const gradient = ctx.createRadialGradient(x, y, 0, x, y, radius);
     gradient.addColorStop(0, 'rgba(0,0,0,1)');
     gradient.addColorStop(0.4, 'rgba(0,0,0,0.4)');
     gradient.addColorStop(0.7, 'rgba(0,0,0,0.1)');
     gradient.addColorStop(1, 'rgba(0,0,0,0)');
-
     ctx.globalCompositeOperation = 'destination-out';
     ctx.fillStyle = gradient;
     ctx.beginPath();
@@ -120,11 +128,60 @@ export default function PaintRevealHero() {
     ctx.fill();
   };
 
+  useEffect(() => {
+    // Auto-spray animation for mobile
+    const isMobile = window.innerWidth < 768;
+    if (!isMobile) return;
+
+    let animationFrameId;
+    let progress = 0;
+    
+    // Delay slightly to ensure canvas is drawn
+    const timeoutId = setTimeout(() => {
+      const canvas = canvasRef.current;
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d', { willReadFrequently: true });
+      
+      const width = canvas.width;
+      const height = canvas.height;
+      
+      const animateSpray = () => {
+        progress += 0.008; // speed of the spray
+        if (progress > 1) {
+          cancelAnimationFrame(animationFrameId);
+          return;
+        }
+        
+        // Zig-zag pattern
+        // Sinusoidal X movement
+        const x = width * 0.5 + Math.sin(progress * Math.PI * 6) * (width * 0.35);
+        // Linear Y movement from top to bottom
+        const y = height * 0.1 + (height * 0.8 * progress);
+        
+        drawSprayAt(ctx, x, y, 60);
+        // Thicken the spray a bit for mobile
+        drawSprayAt(ctx, x + 15, y, 50);
+        drawSprayAt(ctx, x - 15, y, 50);
+
+        animationFrameId = requestAnimationFrame(animateSpray);
+      };
+      
+      animateSpray();
+    }, 1000);
+
+    return () => {
+      clearTimeout(timeoutId);
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+
+
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-screen overflow-hidden bg-background"
+      className="relative w-full h-[100dvh] overflow-hidden bg-background"
       onMouseMove={handleMouseMove}
+      onTouchMove={handleMouseMove}
       style={{ cursor: `url(${ASSETS.Graffiti_cursor}) 10 10, auto` }}
       >
       {/* Imagen de fondo */}

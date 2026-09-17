@@ -101,22 +101,33 @@ export default function ProjectSlider({ project, onImageClick }) {
   
 
   return (
-    <div className="space-y-12 px-12">
+    <div className="space-y-12 w-full">
       <div key={project.id} className="relative">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-3xl font-heading text-text">{project.title}</h2>
-          <FancyButton
-            label="Más info"
-            icon={
-              <Icon
-                icon="material-symbols:add-circle-outline-rounded"
-                width="20"
-                height="20"
-                className="text-current"
+          <div className="flex items-center">
+            <div className="hidden md:block">
+              <FancyButton
+                label="Más info"
+                icon={
+                  <Icon
+                    icon="material-symbols:add-circle-outline-rounded"
+                    width="20"
+                    height="20"
+                    className="text-current"
+                  />
+                }
+                onClick={openInfoModal}
               />
-            }
-            onClick={openInfoModal}
-          />
+            </div>
+            <button 
+              onClick={openInfoModal} 
+              className="md:hidden text-text hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-full" 
+              aria-label="Más info"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 16 16"><path fill="currentColor" fillRule="evenodd" d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16M9 5a1 1 0 1 1-2 0a1 1 0 0 1 2 0M7 7a.75.75 0 0 0 0 1.5h.25v2h-1a.75.75 0 0 0 0 1.5h3.5a.75.75 0 0 0 0-1.5h-1V7z" clipRule="evenodd"/></svg>
+            </button>
+          </div>
         </div>
 
         <div className="marquee-scroll-wrapper overflow-y-hidden py-6" ref={scrollRef}>
@@ -134,9 +145,10 @@ export default function ProjectSlider({ project, onImageClick }) {
                       )
                     }
                     className="p-0 m-0 border-0 bg-transparent cursor-pointer relative block group rounded-xl overflow-hidden shadow-lg hover:shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-95 transition-all duration-500 ease-out"
+                    aria-label={`Ver ${project.title} imagen ${i + 1} en galería`}
                   >
                     <div className="relative">
-                      <img
+                      <img loading="lazy" decoding="async"
                         src={media.src}
                         alt={`${project.title} ${i + 1}`}
                         className="w-[280px] sm:w-[320px] md:w-[450px] h-[320px] md:h-[400px] object-cover transition-transform duration-700 ease-out group-hover:scale-110"
@@ -166,7 +178,7 @@ export default function ProjectSlider({ project, onImageClick }) {
         isOpen={!!modalData}
         onRequestClose={closeModal}
         shouldCloseOnOverlayClick={true}
-        className="relative mx-auto mt-10 mb-10 max-w-5xl w-[95%] bg-background text-text outline-none rounded-2xl shadow-2xl z-[9999] flex flex-col md:flex-row overflow-hidden border border-neutral-700"
+        className="relative mx-auto mt-10 mb-10 max-w-5xl w-[95%] bg-background text-text outline-none rounded-2xl shadow-2xl z-[9999] flex flex-col-reverse md:flex-row overflow-hidden border border-neutral-700"
         overlayClassName="fixed inset-0 bg-black/90 backdrop-blur-sm flex justify-center items-start overflow-y-auto z-[9998]"
       >
         <button
@@ -180,7 +192,7 @@ export default function ProjectSlider({ project, onImageClick }) {
         {/* Galería (izquierda) */}
         <div className="w-full md:w-1/2 p-6 overflow-y-auto h-auto md:max-h-[85vh] border-b md:border-b-0 md:border-r border-neutral-700 custom-scrollbar bg-black/10">
           <div className="flex flex-col gap-6">
-            {modalData?.media?.map((media, i) => (
+            {modalData?.media?.filter(m => m.type === 'image').slice(0, 1).map((media, i) => (
               <div key={i} className="shadow-lg rounded-xl overflow-hidden">
                 {media.type === 'image' ? (
                   <img
@@ -188,6 +200,8 @@ export default function ProjectSlider({ project, onImageClick }) {
                     alt={`${modalData.title} ${i + 1}`}
                     className="w-full h-auto object-cover"
                     draggable={false}
+                    loading="lazy"
+                    decoding="async"
                   />
                 ) : (
                   <video

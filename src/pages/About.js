@@ -36,16 +36,16 @@ export default function About() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.8 }}
-        className="max-w-4xl mx-auto"
+        className="max-w-4xl mx-auto px-6 md:px-0"
       >
-        <div className="flex flex-col md:flex-row items-center justify-between mt-16">
+        <div className="flex flex-col md:flex-row items-center justify-between mt-8 md:mt-16 w-full">
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             ref={containerRef} 
-            className="relative w-[200%] mx-auto"
+            className="relative w-full md:w-1/2 mx-auto"
           >
             <img loading="lazy" decoding="async" src={ASSETS.xari} alt="Fondo" className="h-full w-full block" />
 
@@ -72,7 +72,7 @@ export default function About() {
                 transition: { staggerChildren: 0.2, delayChildren: 0.4 }
               }
             }}
-            className="pl-4 font-body leading-relaxed"
+            className="mt-12 md:mt-0 md:pl-8 font-body leading-relaxed w-full text-center md:text-left"
           >
             <motion.h1 
               variants={{ hidden: { opacity: 0, x: 20 }, visible: { opacity: 1, x: 0, transition: { duration: 0.6 } } }}
@@ -120,9 +120,9 @@ export default function About() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.1 }}
         transition={{ duration: 0.8 }}
-        className="max-w-5xl mx-auto my-12 md:my-[9rem]"
+        className="max-w-5xl mx-auto px-6 md:px-0 my-12 md:my-[9rem]"
       >
-        <div className="flex flex-col md:flex-row justify-between gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 w-full">
           {/* CARD 1 */}
 <motion.div 
   initial={{ opacity: 0, y: 30 }}
@@ -130,6 +130,9 @@ export default function About() {
   viewport={{ once: true, amount: 0.2 }}
   transition={{ duration: 0.6, delay: 0.2 }}
   className="card group text-text dark:text-text hover:text-text dark:hover:text-text-inverse transition-colors duration-300 p-6 rounded-lg border border-neutral-700"
+  aria-label="Premios y nominaciones en festivales"
+  role="region"
+  tabIndex="0"
 >
   <div>
     <Icon
@@ -140,29 +143,26 @@ export default function About() {
     />
   </div>
 
-  <WorkLink
-    className="font-heading text-text dark:group-hover:text-text-inverse transition-colors duration-300"
-    href="https://www.youtube.com/watch?v=KA-7mkDLY28"
-  >
-    'Gazpachuelo'
-  </WorkLink>
-
-  <p className="text-sm text-center break-words transition-colors duration-300 dark:group-hover:text-text-inverse">
-    Categoría Mejor Corto en el <a href="https://festivaladn.com" target="_blank" rel="noopener noreferrer" className="font-bold text-primary underline">Festival ADN 2023</a>. Presentado y participando en el Festival Internacional de Cine en Guadalajara (México).
-  </p>
-
-  <br />
-
-  <WorkLink
-    className="font-heading text-text dark:group-hover:text-text-inverse transition-colors duration-300"
-    href="https://www.instagram.com/festivaladn/p/DITnXBNI4z6/?hl=en"
-  >
-    "OutS1d3"
-  </WorkLink>
-
-  <p className="text-sm text-center break-words transition-colors duration-300 dark:group-hover:text-text-inverse">
-    Coordinación en departamentos de dirección y producción, ganador a mejor dirección de arte en el <a href="https://festivaladn.com/" target="_blank" rel="noopener noreferrer" className="font-bold text-primary underline">Festival ADN 2025</a>.
-  </p>
+  <div className="relative z-50 flex flex-col items-center justify-center w-full mt-4 gap-2">
+    <WorkLink
+      className="font-heading text-text dark:group-hover:text-text-inverse transition-colors duration-300"
+      href="https://www.youtube.com/watch?v=KA-7mkDLY28"
+    >
+      'Gazpachuelo'
+    </WorkLink>
+    <p className="text-sm text-center break-words transition-colors duration-300 dark:group-hover:text-text-inverse">
+      Categoría Mejor Corto en el <strong>Festival ADN 2023</strong>. Presentado y participando en el Festival Internacional de Cine en Guadalajara (México).
+    </p>
+    <WorkLink
+      className="font-heading text-text dark:group-hover:text-text-inverse transition-colors duration-300 mt-4"
+      href="https://www.instagram.com/festivaladn/p/DITnXBNI4z6/?hl=en"
+    >
+      "OutS1d3"
+    </WorkLink>
+    <p className="text-sm text-center break-words transition-colors duration-300 dark:group-hover:text-text-inverse">
+      Coordinación en departamentos de dirección y producción, ganador a mejor dirección de arte en el <strong>Festival ADN 2025</strong>.
+    </p>
+  </div>
 </motion.div>
 
 
@@ -173,6 +173,9 @@ export default function About() {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6, delay: 0.4 }}
             className="card group text-text dark:text-text hover:text-text dark:hover:text-text-inverse transition-colors duration-300 p-6 rounded-lg border border-neutral-700"
+            aria-label="Disciplinas y habilidades"
+            role="region"
+            tabIndex="0"
           >
             <div>
               <Icon
@@ -208,7 +211,10 @@ export default function About() {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6, delay: 0.6 }}
             ref={lomographyRef} 
-            className="card group text-text dark:text-text hover:text-text dark:hover:text-text-inverse transition-colors duration-300 p-6 rounded-lg border border-neutral-700 relative flex flex-col items-center text-center justify-center" 
+            className="card group text-text dark:text-text hover:text-text dark:hover:text-text-inverse transition-colors duration-300 p-6 rounded-lg border border-neutral-700 relative flex flex-col items-center text-center justify-center"
+            aria-label="Apariciones en prensa y Lomography"
+            role="region"
+            tabIndex="0" 
           >
             <div>
               <Icon
@@ -241,6 +247,8 @@ export default function About() {
               onMouseLeave={handleMouseLeave}
               onTouchStart={handleTouchStart} 
               onTouchEnd={handleTouchEnd}
+              onFocus={handleMouseEnter}
+              onBlur={handleMouseLeave}
               className="relative z-10 flex flex-col items-center justify-center w-full h-full py-6 mt-2"
             >
               <WorkLink 
@@ -331,7 +339,7 @@ export default function About() {
               transition: { staggerChildren: 0.1, delayChildren: 0.2 }
             }
           }}
-          className="grid grid-cols-3 gap-6 m-10"
+          className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8 my-8 md:my-10 w-full"
         >
           <motion.div variants={{ hidden: { opacity: 0, scale: 0.8 }, visible: { opacity: 1, scale: 1, transition: { duration: 0.4 } } }}>
             <SkillCircle

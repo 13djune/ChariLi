@@ -209,14 +209,14 @@ export default function Proyectos() {
   return (
     <>
         <div className="w-full h-[60dvh] md:h-[800px] relative">
-        <div className='flex flex-col items-center absolute top-[50%] left-[50%]  -translate-x-1/2 -translate-y-1/2'>
+        <div className='flex flex-col items-center absolute top-[50%] left-[50%] w-full px-6 -translate-x-1/2 -translate-y-1/2'>
         <h1 className='font-heading text-text text-5xl mb-6'>Proyectos</h1>
         <p className='text-text text-center px-4'>Aquí podrás ver todos los proyectos en los que he participado.</p>
 
         </div>
         <CameraViewfinder />
         </div>    
-        <section className="mx-auto pb-12">
+        <section className="mx-auto pb-12 px-6 md:px-12">
             {projects.map((project, index) => (
                 <motion.section 
                     initial={{ opacity: 0, y: 50 }}

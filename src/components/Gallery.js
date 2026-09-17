@@ -14,7 +14,7 @@ const images = ASSETS.GALLERY.map((src, i) => ({
   description: "..."
 }));
 
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useMotionValue, useSpring } from 'framer-motion';
 
 import { useAnimation } from 'framer-motion';
 
@@ -24,11 +24,10 @@ import { useAnimation } from 'framer-motion';
 const GalleryItem = ({ img, idx, setSelectedIndex }) => {
   return (
     <motion.div 
-      className="media cursor-pointer relative transition-transform duration-200 ease-out hover:scale-110 hover:z-10" 
-      
-      key={idx} 
+      className="media cursor-pointer relative transition-transform duration-200 ease-out hover:scale-110 hover:z-10 w-full aspect-square snap-center"
+      key={idx}
       onClick={() => setSelectedIndex(idx)}
-      style={{ width: '100px', height: '100px', willChange: 'transform' }}
+      style={{ willChange: 'transform' }}
     >
       <img 
         src={img.src} 
@@ -44,21 +43,29 @@ const GalleryItem = ({ img, idx, setSelectedIndex }) => {
 
 
 export default function Gallery() {
-  const [selectedIndex, setSelectedIndex] = useState(null);
   
-  // Handlers for dragging / mouse follow
-  const handleMouseMove = (e, idx) => {
-    const el = document.getElementById(`gallery-img-wrapper-${idx}`);
-    if (el) {
-      // Just apply a subtle translation based on movement
-      const x = (e.nativeEvent.movementX * 0.5);
-      const y = (e.nativeEvent.movementY * 0.5);
-      
-      const currentTransform = el.style.transform;
-      // We will let framer motion's whileHover handle scale/rotate, and apply translation dynamically if needed.
-      // But a cleaner way is just using framer-motion drag!
-    }
+  const [selectedIndex, setSelectedIndex] = useState(null);
+
+  // Parallax optimized hover values
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const smoothX = useSpring(mouseX, { stiffness: 80, damping: 20 });
+  const smoothY = useSpring(mouseY, { stiffness: 80, damping: 20 });
+
+  const handleMouseMove = (e) => {
+    if (window.innerWidth < 768) return; // Only desktop
+    const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - left) / width - 0.5; 
+    const y = (e.clientY - top) / height - 0.5;
+    mouseX.set(x * -40); // Max 40px movement
+    mouseY.set(y * -40);
   };
+  
+  const handleMouseLeave = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+  };
+
 
   const handlePrev = () => {
     setSelectedIndex((prev) => (prev > 0 ? prev - 1 : images.length - 1));
@@ -81,18 +88,21 @@ export default function Gallery() {
 
   return (
     <motion.section 
-      className="mwg_effect000 max-w-5xl mx-auto my-12 md:my-[9rem]"
+      className="mwg_effect000 max-w-5xl mx-auto my-12 md:my-[9rem] px-6 md:px-12"
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
     >
       <div className="header flex flex-col items-center">
         <h1 className="text-3xl font-bold mb-4 text-text">Mi álbum</h1>
       </div>
 
       <motion.div 
-        className="flex flex-wrap justify-center gap-2 p-8 max-w-[1200px] mx-auto"
+        className="grid grid-rows-4 grid-flow-col auto-cols-[28%] sm:auto-cols-[22%] md:grid-rows-none md:grid-flow-row md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-2 md:gap-4 p-4 md:p-8 overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none hide-scrollbar max-w-[1200px] mx-auto w-full"
+        style={{ x: smoothX, y: smoothY }}
         variants={{
           hidden: { opacity: 0, y: 40 },
           visible: { 

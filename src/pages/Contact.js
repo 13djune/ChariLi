@@ -41,7 +41,7 @@ export default function Contacto() {
   const hoveredImage = links.find(link => link.key === hoveredKey)?.image;
 
   return (
-    <section className="mx-auto py-12 relative min-h-dvh flex flex-col justify-center">
+    <section className="mx-auto py-12 relative min-h-dvh flex flex-col justify-center px-6 md:px-12">
       {/* Imagen en pantalla completa con blend mode */}
       {hoveredImage && (
         <img
@@ -52,7 +52,7 @@ export default function Contacto() {
       )}
 
       <div className="flex flex-col items-center relative z-10">
-        <p className='text-text text-sm text-center uppercase py-4 w-[90%] md:w-[90%] md:w-[60%] lg:w-[40%] lg:w-[30%]'>Si tienes una <strong>idea rondando la cabeza</strong>, no la dejes escapar. <strong>Escríbeme</strong> y veamos qué puede salir de ahí.</p>
+        <p className='text-text text-sm text-center uppercase py-4 w-[90%] md:w-[60%] lg:w-[30%]'>Si tienes una <strong>idea rondando la cabeza</strong>, no la dejes escapar. <strong>Escríbeme</strong> y veamos qué puede salir de ahí.</p>
         <h1 className="text-text text-4xl font-heading text-center my-8 w-[90%] md:w-[60%] lg:w-[40%] uppercase">¿Nos ponemos en contacto?</h1>
         <div className="flex flex-col md:flex-row items-center my-8 gap-4 md:gap-0">
           {links.map(({ href, label, key }) => (
@@ -60,7 +60,7 @@ export default function Contacto() {
               key={key}
               onMouseEnter={() => setHoveredKey(key)}
               onMouseLeave={() => setHoveredKey(null)}
-              className="mx-8 text-text "
+              className="my-4 md:my-0 md:mx-8 text-text"
             >
               <WorkLink className="" href={href}>{label}</WorkLink>
             </div>
