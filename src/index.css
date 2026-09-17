@@ -204,7 +204,9 @@ a:not([href]), button:disabled {
   font-family: var(--font-heading), sans-serif;
   font-weight: 700;
   font-size: clamp(1.25rem, 2vw + 1rem, 1.75rem);
-  overflow: hidden;
+  overflow: visible;
+  padding-bottom: 0.15em;
+  line-height: 1.4;
   text-decoration: none;
   border-radius: 2px;
   transition: all 0.3s ease;
